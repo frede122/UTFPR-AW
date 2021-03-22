@@ -1,5 +1,5 @@
 # Hibernate Veiculo.
-Utiliz Hibernate, o programa cria uma tabela chamada automóveis que contem os seguintes campos:
+Utilizando Hibernate, o programa cria uma tabela chamada automóveis que contem os seguintes campos:
 - fabricantes;
 - modelo;
 - ano do modelo;
