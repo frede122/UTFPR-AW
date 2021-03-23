@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <title>Minha Dieta</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Css Geral -->
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      h = false;
+      function hide(){
+          if(h){
+              document.getElementById("menu").classList.remove("hide");
+              document.getElementById("nav-bar").classList.add("close-b");
+              document.getElementById("menu").classList.add("col-4");
+          }else{
+              document.getElementById("nav-bar").classList.remove("close-b");
+              document.getElementById("menu").classList.add("hide");
+              document.getElementById("menu").classList.remove("col-4");
+          }
+          h = !h;
+      }
+    </script>
+
+
+  </head>
+  <body>
+    <header>
+      <nav id="nav-bar" class="close-b" >
+        <div onclick="hide()" id="buttonc">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+      </nav>
+    </header>  
+    <div  class="container-fluid justify-content-center row">
+      <!-- Sidebar -->
+      <aside id=menu class="col-4">
+        <ul>
+          <li><a href="index.html" >Iinicio</a></li>
+          <li><a href="alimentos.html">Alimentos</a></li>
+          <li><a href="bebidas.html">Bebidas</a></li>
+          <li class="active"><a href="cardapio.html">Cardapio</a></li>
+          <li><a href="receitas.html">Receitas</a></li>
+          <li><a href="contato.html">Contato!</a></li>
+        </ul>
+      </aside>
+      <!-- Conteudo Principal -->
+      <main class="col">
+        <div class="cad-alimentos container">
+          <h3>Cadastro de cardapio</h3>
+
+          <form class=" col-8" action="bebidas.html">
+            <div class="form-group">
+              <label for="exampleFormControlInput1" >Nome</label>
+              <input type="text" class="form-control" placeholder="Nome" id="nomeFormControlInput1">
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1" >Categoria</label>
+              <select class="form-control" placeholder="Categoria" id="CategoriaFormControlSelect1">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">Calorias</label>
+              <input type="number"  placeholder="Calorias p/ unid" class="form-control" id="caloriasFormControlInput1">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Descrição</label>
+                <textarea class="form-control" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <p id="ingredientes"><strong>ingredientes:</strong> maçã <span style="color: red">x</span>, banana <span style="color: red">x</span>, manga <span style="color: red">x </span><button  class="btn btn-primary">+</button></p>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+          </form>
+
+        </div>
+      </main> 
+          
+      </main>
+    </div> 
+    <footer class="container-fluid justify-content-center">
+      <h5>Minha Dieta</h5>
+      <span>Desenvolvido por Frederson Mandu de Oliveira</span>
+      <span>Todos os direitos reservados!</span>
+    </footer >
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+  </body>
+</html>
