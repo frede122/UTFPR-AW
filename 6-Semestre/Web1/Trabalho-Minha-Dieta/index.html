@@ -1,25 +1,67 @@
 <!doctype html>
 <html lang="pt-br">
   <head>
-    <title>Title</title>
+    <title>Minha Dieta</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="bootstrap/4.3.1/css/bootstrap.min.css">
     <!-- Css Geral -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+      h = false;
+      function hide(){
+          if(h){
+              document.getElementById("menu").classList.remove("hide");
+              document.getElementById("nav-bar").classList.add("close");
+              document.getElementById("menu").classList.add("col-4");
+          }else{
+              document.getElementById("nav-bar").classList.remove("close");
+              document.getElementById("menu").classList.add("hide");
+              document.getElementById("menu").classList.remove("col-4");
+          }
+          h = !h;
+      }
+    </script>
+
+
   </head>
   <body>
-    <main>
-        <div id="login">
-            
+    <header>
+      <nav id="nav-bar" class="hide">
+        <div onclick="hide()" id="buttonc">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-    </main>
+      </nav>
+    </header>  
+    <div  class="container-fluid justify-content-center row">
+      
     
+      <aside id=menu class="col-4">
+        <ul>
+          <li class="active"><a href="" >Iinicio</a></li>
+          <li><a href="">Alimentos</a></li>
+          <li><a href="">Bebidas</a></li>
+          <li><a href="">Cardapio</a></li>
+          <li><a href="">Receitas</a></li>
+          <li><a href="">Contato!</a></li>
+        </ul>
+      </aside>
+      <main class="col">
+        TESTE2
+      </main>
+    </div> 
+    <footer class="container-fluid justify-content-center row">
+      <h5>Minha Dieta</h5>
+      <span>Desenvolvido por Frederson Mandu de Oliveira</span>
+      <span>Todos os direitos reservados!</span>
+    </footer >
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="bootstrap/4.3.1/js/bootstrap.min.js" ></script>
   </body>
 </html>
