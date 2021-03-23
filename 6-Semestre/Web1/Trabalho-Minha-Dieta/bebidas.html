@@ -42,6 +42,7 @@
       <!-- Sidebar -->
       <aside id=menu class="col-4">
         <ul>
+          <li><a href="login.html">Sair <img width="20px" src="img/icon/sair.svg"> </a></li> 
           <li><a href="index.html" >Iinicio</a></li>
           <li><a href="alimentos.html">Alimentos</a></li>
           <li class="active"><a href="bebidas.html">Bebidas</a></li>
@@ -78,11 +79,43 @@
                 <label for="exampleFormControlTextarea1">Descrição</label>
                 <textarea class="form-control" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
-            <p id="ingredientes"><strong>ingredientes:</strong> maçã <span style="color: red">x</span>, banana <span style="color: red">x</span>, manga <span style="color: red">x </span><button  class="btn btn-primary">+</button></p>
 
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <!-- Inserir Ingredientes -->
+            <p id="ingredientes"><strong>ingredientes: </strong><span id="ingre"></span> 
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#modal3">
+                +
+              </button>
+            </p>
+            <!-- Modal -->
+            <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modal3Title">Ingrediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="container">
+                      <label for="exampleFormControlInput1" >Nome</label>
+                      <input type="text" id="vlrIngre" class="form-control" placeholder="Nome" id="nomeFormControlInput1">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="addIngrediente()" data-dismiss="modal">Salvar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <button type="submit" class="btn btn-primary">Salvar</button> -->
+            <span id="statusSave"></span>
           </form>
-
+          <button  onclick="addAlert('Erro, não foi possivel salvar!')" class="btn btn-primary">Salvar</button>
         </div>
       </main> 
           
@@ -96,5 +129,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+    <script src="js/scrypt.js" ></script>
   </body>
 </html>
