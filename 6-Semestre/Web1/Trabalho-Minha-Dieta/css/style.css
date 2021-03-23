@@ -25,19 +25,19 @@
     font-size: 20px;
     font-weight: 900;
 }
-#menu ul li.active, #menu ul li:hover { background-color: #5B45F5 ; }
+#menu ul li.active, #menu ul li:hover { background-color: #3b2ba8 ; }
 
 #menu.hide{ margin-left: -100%; }
 
-.close > #buttonc > span:first-child{
+.close-b > #buttonc > span:first-child{
     transform: rotate(45deg);
     margin-top: 10px !important
 
 }
-.close > #buttonc > span:nth-child(2){
+.close-b > #buttonc > span:nth-child(2){
     display: none !important;
 }
-.close > #buttonc > span:last-child{
+.close-b > #buttonc > span:last-child{
     transform: rotate(-45deg);
     margin-top: -10px !important;
 }
@@ -46,7 +46,7 @@
     transition: 0.5s;
 }
 
-#nav-bar, #navbar.close{
+#nav-bar{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -61,29 +61,17 @@
 }
 #nav-bar #buttonc span{ 
     display: block;
-    width: 60px;
-    height: 7px;
+    width: 40px;
+    height: 4px;
     background-color: #ffffff;
-    margin: 5px;
-}
-
-#nav-bar .button {
-    width: 155px;
-    height: 42px;
-    display: flex;
-    margin-right: 63px;
-    box-sizing: border-box;
-    align-items: center;
-    justify-content: center;
-    border-radius: 6px;
-    color: white !important;
-    box-shadow: 0px 2px 2px #00000032 ;
+    margin: 4px;
 }
 
 
 #nav-bar { 
     height: auto;
-    line-height: 45px;
+    min-height: 65px;
+    line-height: 40px;
     position: relative;
     width: 100%;
     transition: 1s;
@@ -96,8 +84,19 @@
 }
 
 
+.list-diet{
+    margin: 15px auto;
+    max-width: calc(33.33333% - 20px);
+    box-shadow: 3px 4px 4px rgba(65, 65, 65, 0.288);
+}
+
+.list-diet .btn {
+    margin: 0 auto !important;
+    display: block;
+}
+
 footer {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     width: 100%;
     height: 250px;
@@ -105,10 +104,24 @@ footer {
     color: white;
     text-align: center;
     justify-content:center !important;
+    align-items: flex-start;
+    padding: 0 !important;
+}
+footer::before {
+    content: '';
+    display:block;
+    position: relative;
+    width: 100%;
+    height: 55px;
+    background-color: #222222;
+    top: 0;
+    border-bottom: solid 1px #161616;
+    margin-bottom: 20px;
 }
 footer h5 { 
     width: 100%;
-    margin-top: 25px;
     display: block;
+    height: 20px;
+    position: relative;
 }
-footer span { width: 100%;}
+footer span { display: block;}

@@ -15,10 +15,10 @@
       function hide(){
           if(h){
               document.getElementById("menu").classList.remove("hide");
-              document.getElementById("nav-bar").classList.add("close");
+              document.getElementById("nav-bar").classList.add("close-b");
               document.getElementById("menu").classList.add("col-4");
           }else{
-              document.getElementById("nav-bar").classList.remove("close");
+              document.getElementById("nav-bar").classList.remove("close-b");
               document.getElementById("menu").classList.add("hide");
               document.getElementById("menu").classList.remove("col-4");
           }
@@ -30,7 +30,7 @@
   </head>
   <body>
     <header>
-      <nav id="nav-bar" class="hide">
+      <nav id="nav-bar" class="close-b" >
         <div onclick="hide()" id="buttonc">
             <span></span>
             <span></span>
@@ -39,8 +39,7 @@
       </nav>
     </header>  
     <div  class="container-fluid justify-content-center row">
-      
-    
+      <!-- Sidebar -->
       <aside id=menu class="col-4">
         <ul>
           <li class="active"><a href="" >Iinicio</a></li>
@@ -51,11 +50,120 @@
           <li><a href="">Contato!</a></li>
         </ul>
       </aside>
+      <!-- Conteudo Principal -->
       <main class="col">
-        TESTE2
+        <div class="container">
+          <div class="row">
+            <!-- Primeira Linha, Primeiro item -->
+            <div class="card col-4 list-diet">
+              <div class="card-body">
+                <h5 class="card-title">Cafe da Manha</h5>
+                <h6 class="card-subtitle mb-2 text-muted">8:00</h6>
+                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1">
+                  Ver
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal1Title">Café da Manhã</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h6 class="card-subtitle mb-2 text-muted">8:00</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+            <!-- Primeira Linha, Segundo item -->
+            <div class="card col-4 list-diet">
+              <div class="card-body">
+                <h5 class="card-title">Almoço</h5>
+                <h6 class="card-subtitle mb-2 text-muted">12:00</h6>
+                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal2">
+                  Ver
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal2Title" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal1Title">Almoço</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h6 class="card-subtitle mb-2 text-muted">12:00</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Primeira Linha, Terceiro item -->
+            <div class="card col-4 list-diet">
+              <div class="card-body">
+                <h5 class="card-title">Janta</h5>
+                <h6 class="card-subtitle mb-2 text-muted">19:00</h6>
+                <p class="card-text">Um exemplo de texto rápido para construir o título do card e fazer preencher o conteúdo do card.</p>
+                
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal3">
+                  Ver
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="modal3Title" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="modal3Title">Janta</h5>
+                        
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <h6 class="card-subtitle mb-2 text-muted">19:00</h6>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>  
+        </div>
       </main>
     </div> 
-    <footer class="container-fluid justify-content-center row">
+    <footer class="container-fluid justify-content-center">
       <h5>Minha Dieta</h5>
       <span>Desenvolvido por Frederson Mandu de Oliveira</span>
       <span>Todos os direitos reservados!</span>
