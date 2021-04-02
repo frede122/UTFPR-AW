@@ -86,6 +86,7 @@
 main .container h3 { margin-top: 20px;}
 .list-diet{
     margin: 15px auto;
+    min-width: 240px;
     max-width: calc(33.33333% - 20px);
     box-shadow: 3px 4px 4px rgba(65, 65, 65, 0.288);
     display: flex;
