@@ -1,0 +1,9 @@
+
+#nav-primary a.active {
+    color:#198754 ;
+    font-weight: bolder;
+}
+
+#nav-primary a.nav-link-danger.active{
+    color:#dc3545;
+}
