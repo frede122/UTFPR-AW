@@ -51,6 +51,9 @@ function NavBar({active = 'inicio'}){
                             <Link className={ active === "relatorio" ? "nav-link active" : "nav-link"} aria-current="page" to="relatorio">Relatorio</Link>
                         </li>
                         <li className="nav-item">
+                            <Link className={ active === "contato" ? "nav-link active" : "nav-link"} aria-current="page" to="contato">Contato</Link>
+                        </li>
+                        <li className="nav-item">
                             <Link className="nav-link-danger active nav-link" aria-current="page" to="login">Sair</Link>
                         </li>
                     </ul>

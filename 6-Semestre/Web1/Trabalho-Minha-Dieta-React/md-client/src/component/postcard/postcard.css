@@ -1,0 +1,48 @@
+.main .card {
+    border-bottom-left-radius: 6px !important;
+    border-bottom-right-radius: 6px !important;
+}
+
+.main .card-img-top {
+    border-top-left-radius: 6px !important;
+    border-top-right-radius: 6px !important;
+}
+
+.modal-home .modal-header {
+    min-height: 250px;
+    background-size:cover !important;
+    background-color: #198754;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end !important;
+    align-items: flex-start;
+    text-align: start;
+    flex-direction: column;
+}
+
+
+.modal-home .modal-header,.modal-home .modal-header h3{
+    color: #01d371 !important;
+    font-size: 35px;
+    
+}
+
+.modal-home .modal-header h3{
+    margin-left: 20px;
+    text-shadow: #00000056 3px 3px 4px;
+    
+}
+.modal-home .modal-header p { font-size: 25px; }
+.modal-home .modal-header p, .modal-home .modal-header span{
+    color: #ffffff;
+    margin-left: 20px;
+    font-weight: 600;
+    text-shadow: #000000c4 3px 3px 4px;
+    
+}
+
+.modal-home .btn-close {
+    position: absolute;
+    top: 20px;
+    right: 20PX;
+}

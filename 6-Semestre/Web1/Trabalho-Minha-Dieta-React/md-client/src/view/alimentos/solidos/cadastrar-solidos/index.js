@@ -8,7 +8,7 @@ function CadastrarSolidos(){
     return(
         <>
             <NavBar active="alimentos" />
-            <main id="cad-alimentos" className="solidos">
+            <main id="cad-alimentos" className="cadastro solidos">
                 <div class="container col-lg-4 col-md-8 col-sm-12 row">
                     <h3 className="text-success mb-3 text-center">Cadastro de Alimentos</h3>
 

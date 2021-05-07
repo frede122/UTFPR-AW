@@ -13,6 +13,7 @@ import CadastrarBebidas from "./view/alimentos/bebidas/cadastrar-bebidas";
 import Cardapio from "./view/cardapio";
 import CadastrarCardapio from "./view/cardapio/cadastrar-cardapio";
 import Relatorio from "./view/relatorio";
+import Contato from "./view/contato";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
       <Route exact path='/cardapios' component={ Cardapio } />
 
       <Route exact path='/relatorio' component={ Relatorio } />
+
+      <Route exact path='/contato' component={ Contato } />
 
     </Router>
   );

@@ -8,12 +8,17 @@ function Home() {
     return(
         <>
             <NavBar active="inicio"/>
-            <h1>Home page!</h1>
-            <div className="row m-0">
+            <div className="inicio main p-lg-5 p-md-3 p-sm-1 row m-0">
+                <h2>5 de maio de 2021</h2>
+                <h5 className="text-success">Quarta feira</h5>
+                <hr className="separete" />
                 <Postcard />
                 <Postcard />
                 <Postcard />
                 <Postcard />
+                <h2 className="mt-5">6 de maio de 2021</h2>
+                <h5 className="text-success">Quinta feira</h5>
+                <hr className="separete" />
                 <Postcard />
                 <Postcard />
             </div>
