@@ -1,1 +1,5 @@
-main#cad-cardapio { background-image: url('../../../img/background/prato5.jpg');}
+main#cad-cardapio { 
+    background-image: url('../../../img/background/prato5.jpg');
+    background-attachment: fixed;
+
+}

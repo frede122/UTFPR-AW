@@ -1,3 +1,6 @@
-main#cad-alimentos { background-image: url('../../img/background/prato5.jpg');}
+main#cad-alimentos { 
+    background-image: url('../../img/background/prato5.jpg');
+    background-attachment: fixed;
+}
 
 main#cad-alimentos ul li { list-style: none;}

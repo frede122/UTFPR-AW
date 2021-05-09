@@ -2,9 +2,9 @@ import React from  'react';
 import { Link } from 'react-router-dom';
 import LineList from '../../component/line-list';
 import NavBar from '../../component/navbar';
-import './perfil.css'
+import './usuario.css'
 
-function Perfil(){
+function Usuario(){
     return(
         <>
             <NavBar active="pacientes" />
@@ -31,4 +31,4 @@ function Perfil(){
     );
 }
 
-export default Perfil;
+export default Usuario;

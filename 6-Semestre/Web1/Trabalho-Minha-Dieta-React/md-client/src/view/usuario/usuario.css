@@ -1,4 +1,5 @@
 main#cad-perfil {
     background-image: url('../../img/background/nutricionista.jpg');
+    background-attachment: fixed;
 }
 
