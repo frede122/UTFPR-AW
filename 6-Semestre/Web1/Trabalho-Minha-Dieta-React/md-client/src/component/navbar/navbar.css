@@ -7,3 +7,7 @@
 #nav-primary a.nav-link-danger.active{
     color:#dc3545;
 }
+
+.text-small{
+    font-size: 0.8em;
+}

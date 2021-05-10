@@ -3,7 +3,6 @@ import './navbar.css';
 
 import { Link, Redirect} from 'react-router-dom';
 import { useSelector, useDispatch} from 'react-redux';
-import IsLogado  from '../../auth'
 
 function NavBar({active = 'inicio'}){
     const dispatch = useDispatch();
@@ -11,7 +10,7 @@ function NavBar({active = 'inicio'}){
 
         <nav id="nav-primary" className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="home">M.D User: <span className=" small">{useSelector(state => state.usuarioEmail) +" " + useSelector(state => state.usuarioTipo)}</span></Link>
+                <Link className="navbar-brand" to="home">M.D <span className="text-success text-small">{useSelector(state => state.usuarioEmail)}</span></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -67,7 +66,7 @@ function NavBar({active = 'inicio'}){
                             <Link className={ active === "contato" ? "nav-link active" : "nav-link"} aria-current="page" to="contato">Contato</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link-danger active nav-link" aria-current="page" onClick={() => dispatch({ type: 'LOGOUT'})} to="login">Sair</Link>
+                            <Link className="nav-link-danger active nav-link" aria-current="page" onClick={() => dispatch({ type: 'LOGOUT'})} >Sair</Link>
                         </li>
                     </ul>
                     <form className="d-flex">
