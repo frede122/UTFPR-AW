@@ -15,7 +15,6 @@ import Alimentos from "./view/alimentos";
 import CadastrarAlimentos from "./view/alimentos/cadastrar-alimentos";
 import Cardapio from "./view/cardapio";
 import CadastrarCardapio from "./view/cardapio/cadastrar-cardapio";
-import Relatorio from "./view/relatorio";
 import Contato from "./view/contato";
 import LostPassword from './view/lostpassword';
 
@@ -41,7 +40,6 @@ function App() {
           <PrivateRoute exact path='/cadastrar-cardapio' component={ CadastrarCardapio} componentRedirect={Login} />
           <PrivateRoute exact path='/cardapios' component={ Cardapio }  usuarioTipo={0} componentRedirect={Login} />
 
-          <PrivateRoute exact path='/relatorio' component={ Relatorio } componentRedirect={Login}/>
 
           <PrivateRoute path='/contato' component={ Contato}  usuarioTipo={0} componentRedirect={Login} />
   

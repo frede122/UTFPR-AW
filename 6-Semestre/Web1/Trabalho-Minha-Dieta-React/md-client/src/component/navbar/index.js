@@ -52,9 +52,6 @@ function NavBar({active = 'inicio'}){
                                     <li><Link className="dropdown-item" to="cardapios">Ver / Editar</Link></li>
                                 </ul>
                             </li>
-                            <li className="nav-item">
-                            <Link className={ active === "relatorio" ? "nav-link active" : "nav-link"} aria-current="page" to="relatorio">Relatorio</Link>
-                            </li>
                         </>:
                             <li className="nav-item">
                                 <Link className={ active === "cardapio" ? "nav-link active" : "nav-link"} aria-current="page" to="cardapios">Cardapio</Link>
