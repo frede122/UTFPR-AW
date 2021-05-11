@@ -1,9 +1,47 @@
-import React from 'react';
-import LineList from '../../component/line-list';
-import NavBar from '../../component/navbar';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './cardapio.css';
 
+import LineList from '../../component/line-list';
+import NavBar from '../../component/navbar';
+
+
+import firebase from '../../config/firebase';
+
 function Cardapio(){
+
+    const [cardapios, setCardapios] = useState([]);
+    const [paciente, setPaciente] = useState([]);
+    
+    const profissional = useSelector(state => state.usuarioEmail);
+
+    var listaCardapios = [];
+
+    useEffect( () => {
+        firebase.firestore().collection('cardapios').where('usuario', '==', profissional).get().then( async(resultadoCard)=> {
+            
+            await resultadoCard.docs.forEach( doc => {
+                
+                firebase.firestore().collection('usuarios').doc(doc.data().paciente).get().then( resultadoUser =>{
+       
+                    
+                    listaCardapios.push({
+                        id: doc.id,
+                        nomP: resultadoUser.data().nome,
+                        ...doc.data()
+    
+                    })
+                    setCardapios(listaCardapios);
+                })
+
+                
+            })
+            
+
+        })
+    },[]);
+
+
     return(
         <>
             <NavBar active="cardapio" />
@@ -19,10 +57,8 @@ function Cardapio(){
                             <th>dia</th>
                             <th>Horario</th>
                         </tr>
-                        <LineList itens={['Frederson M O', '310', '5/5/2021', '10:00']}  link={'ssd'} />
-                        <LineList itens={['Paula F Correa', '328', '6/5/2021', '9:00']}  link={'ssd'} />
-                        <LineList itens={['Florisa de j', '145', '5/5/2021', '9:00']}  link={'ssd'} />
-                        <LineList itens={['Frederico Pedro de Oliveira', '500', '15/6/2021', '8:00']}  link={'ssd'} />
+                        {cardapios.map(item=> <LineList itens={[item.nomP, item.calorias, item.data, item.hora]}  link={`cardapios/edit/${item.id}`} />)
+                        }
                         
                     </table>
                 </div>

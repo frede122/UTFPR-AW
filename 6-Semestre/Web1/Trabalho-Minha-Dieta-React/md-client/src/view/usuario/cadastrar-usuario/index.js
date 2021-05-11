@@ -4,10 +4,13 @@ import './cadastrar-usuario.css';
 
 import 'firebase/auth';
 import firebase from '../../../config/firebase';
+import AlertField from '../../../component/alertField';
+import { useSelector } from 'react-redux';
 
 function CadastrarUsuario() {
     const [alertAdd, setAlertAdd] = useState(false);
     const [nome, setNome] = useState();
+    const [endereco, setEndereco] = useState();
     const [email, setEmail] = useState();
     const [emailSec, setEmailSec] = useState();
     const [senha, setSenha] = useState();
@@ -16,6 +19,8 @@ function CadastrarUsuario() {
     const [carregando, setCarregando] = useState();
 
     const db = firebase.firestore();
+
+    const usuario = useSelector(state => state.usuarioEmail);   
 
     function salvar(){
 
@@ -44,16 +49,17 @@ function CadastrarUsuario() {
         }
 
         firebase.auth().createUserWithEmailAndPassword(email, senha).then(resultado =>{
- 
-
-            db.collection('usuarios').doc(resultado.user.uid).add({
+            db.collection('usuarios').add({
                 email: email,
+                nome: nome,
+                endereco: endereco,
                 date: new Date(),
-                level: 0
+                level: 0,
+                profissional: usuario
     
             }).then(()=>{
-
                 setCarregando(0);
+                setMsg('Cadastro salvo com sucesso!');
                 setMsgTipo('ok');
             })
 
@@ -84,13 +90,17 @@ function CadastrarUsuario() {
                 <div class="container col-lg-4 col-md-8 col-sm-12 row">
                     <h3 className="text-success mb-3 text-center">Cadastro de Paciente</h3>
 
-                    <form class="col-lg-12 mb-4" action="alimentos.html">
+                    <form class="col-lg-12 mb-2" action="alimentos.html">
                         <div class="form-group">
                             <label className="text-success" for="exampleFormControlInput1" >Nome Completo</label>
-                            <input onChange={(e)=> setNome(e.target.value)} type="text" class="mb-4  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
+                            <input onChange={(e)=> setNome(e.target.value)} type="text" class="mb-2  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
+                        </div>
+                        <div class="form-group">
+                            <label className="text-success" for="exampleFormControlInput1" >Endereço</label>
+                            <input onChange={(e)=> setEndereco(e.target.value)} type="text" class="mb-2  text-success form-control" placeholder="Endereço" id="nomeFormControlInput1" />
                         </div>
                         <div className="mb-2 form-group">
-                            <label className="text-success" for="exampleInputEmail1">Usuario</label>
+                            <label className="text-success" for="exampleInputEmail1">Email</label>
                                 <input onChange={(e)=> setEmail(e.target.value)} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />
                             
                         </div>
@@ -106,21 +116,12 @@ function CadastrarUsuario() {
                         
                     </form>
 
+                    {msgTipo === 'erro' &&  <AlertField msgTipo={msgTipo} msg={msg} func={()=> setMsgTipo(null)} />}
+                    {msgTipo === 'ok' && <AlertField msgTipo={msgTipo} msg={msg}  />}
                     
-                    { msgTipo === 'erro' &&  <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                        <strong>Ahhh! </strong>{msg}
-                        <button onClick={ ()=>{setMsgTipo("")}} type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    }
-                    { msgTipo === 'ok' &&  <div className="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Uah!</strong> Usuario Cadastrado com sucesso!.
-                        <button onClick={ ()=>{setMsgTipo("")}} type="button" class="btn-close" aria-label="Close"></button>
-                        </div>
-                    }
-
                     { 
                         carregando ? <div class="spinner-border text-center text-success" role="status"><span class=" text-center visually-hidden">Loading...</span></div> 
-                        : <><small id="emailHelp" className="mb-3 form-text text-muted">Nunca compartilharemos seu e-mail com mais ninguém.</small>
+                        : <><small id="emailHelp" className="mb-3 form-text text-muted">O e-mail nunca sera compartilhado com mais ninguém.</small>
                         <button  onClick={salvar}  class="btn btn-success">Salvar</button></>
                     }
                     

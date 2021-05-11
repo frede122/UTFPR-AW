@@ -12,8 +12,7 @@ import Usuario from "./view/usuario";
 import CadastrarUsuario from "./view/usuario/cadastrar-usuario";
 import MeuPerfil from "./view/usuario/meu-perfil";
 import Alimentos from "./view/alimentos";
-import CadastrarSolidos from "./view/alimentos/solidos/cadastrar-solidos";
-import CadastrarBebidas from "./view/alimentos/bebidas/cadastrar-bebidas";
+import CadastrarAlimentos from "./view/alimentos/cadastrar-alimentos";
 import Cardapio from "./view/cardapio";
 import CadastrarCardapio from "./view/cardapio/cadastrar-cardapio";
 import Relatorio from "./view/relatorio";
@@ -36,8 +35,8 @@ function App() {
           <PrivateRoute exact path='/cadastrar-usuario' component={CadastrarUsuario} componentRedirect={Login} />
 
           <PrivateRoute exact path='/alimentos' component={ Alimentos } usuarioTipo={0} componentRedirect={Login} />
-          <PrivateRoute exact path='/cadastrar-solidos' component={ CadastrarSolidos } componentRedirect={Login}/>
-          <PrivateRoute exact path='/cadastrar-bebidas' component={ CadastrarBebidas } componentRedirect={Login} />
+          <PrivateRoute exact path='/cadastrar-alimentos' component={ CadastrarAlimentos } componentRedirect={Login}/>
+          
 
           <PrivateRoute exact path='/cadastrar-cardapio' component={ CadastrarCardapio} componentRedirect={Login} />
           <PrivateRoute exact path='/cardapios' component={ Cardapio }  usuarioTipo={0} componentRedirect={Login} />

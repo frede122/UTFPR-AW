@@ -10,7 +10,7 @@ function NavBar({active = 'inicio'}){
 
         <nav id="nav-primary" className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="home">M.D <span className="text-success text-small">{useSelector(state => state.usuarioEmail)}</span></Link>
+                <Link className="navbar-brand" to="home">M.D <span className="text-success text-small">{useSelector(state => state.usuarioId)}</span></Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -38,8 +38,7 @@ function NavBar({active = 'inicio'}){
                                     Alimentos
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="cadastrar-bebidas">Cadastrar Bebidas</Link></li>
-                                    <li><Link className="dropdown-item" to="cadastrar-solidos">Cadastrar Alimentos Solidos</Link></li>
+                                    <li><Link className="dropdown-item" to="cadastrar-alimentos">Cadastrar</Link></li>
                                     <li><Link className="dropdown-item" to="alimentos">Ver / Editar</Link></li>
                                 </ul>
                             </li>

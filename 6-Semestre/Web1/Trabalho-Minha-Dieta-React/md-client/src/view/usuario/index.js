@@ -1,10 +1,40 @@
-import React from  'react';
+import React, { useEffect, useState } from  'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import LineList from '../../component/line-list';
 import NavBar from '../../component/navbar';
 import './usuario.css'
+import firebase from '../../config/firebase'
 
 function Usuario(){
+
+    const [users, setUsers] = useState([]);
+
+    const usuarioEmail = useSelector(state => state.usuarioEmail);
+    const dataHoje = new Date().getFullYear();
+
+
+    var listaUsers = [];
+    var datafinal = new Date();
+    var datainicial = new Date();
+    var idade = 0;
+    useEffect( () => {
+        firebase.firestore().collection('usuarios').where('profissional', '==', usuarioEmail).get().then(async (resultado)=> {
+
+            await resultado.docs.forEach( doc => {
+                
+
+                    listaUsers.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+                
+            })
+            
+            setUsers(listaUsers);
+
+        })
+    })
     return(
         <>
             <NavBar active="pacientes" />
@@ -15,14 +45,11 @@ function Usuario(){
                     <table> 
                         <tr>
                             <th>Nome</th>
-                            <th>Idade</th>
+                            <th>Email</th>
                             <th>Endereço</th>
                         </tr>
-                        <LineList itens={['Frederson Mandu de Oliveira', '30', 'Fazenda Arizona']}  link={'ssd'} />
-                        <LineList itens={['Paula Fernanda Correa', '28', 'Fazenda Arizona']}  link={'ssd'} />
-                        <LineList itens={['Debora Regina Correa', '45', 'Ibaiti']}  link={'ssd'} />
-                        <LineList itens={['sasda', 'sdfsdf', '5545']}  link={'ssd'} />
-                        <LineList itens={['sasda', 'sdfsdf', '5545']}  link={'ssd'} />
+                        { users.map( item =><LineList itens={[item.nome, item.email, item.endereco]}  link={`/usuario/edit/${item.id}`} /> ) }
+                        
                     </table>
 
                 </div>

@@ -3,3 +3,18 @@ main#cad-cardapio {
     background-attachment: fixed;
 
 }
+
+li.item-alimento {
+    list-style: none;
+    width: 100%;
+    padding:3px 7px;
+    background-color:#198754 ;
+    color: white;
+    margin-bottom: 1px;
+}
+
+li.item-alimento:hover {
+    background-color:#28b975 ;
+    color: white
+
+}

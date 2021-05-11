@@ -1,9 +1,165 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import NavBar from '../../../component/navbar';
+import AlertField from '../../../component/alertField';
 import './cadastrar-cardapio.css';
 
-function CadastrarCardapio(){
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import firebase from '../../../config/firebase';
+
+function CadastrarCardapio({match}){
     const [alertAdd, setAlertAdd] = useState(false);
+
+    const [msgTipo, setMsgTipo] = useState();
+    const [msg, setMsg] = useState(false);
+    const [nome, setNome] = useState();
+    const [paciente, setPaciente] = useState();
+    const [data, setData] = useState();
+    const [dataS, setDataS] = useState();
+    const [hora, setHora] = useState();
+    const [calorias, setCalorias] = useState();
+    const [descricao, setDescricao] = useState();
+    const [tipo, setTipo] = useState("Comida");
+    const [pacientes, setPacientes] = useState([]);
+    const [alimentos, setAlimentos] = useState([]);
+    const [textAlimentos, setTextAlimentos] = useState([]);
+
+    const usuario = useSelector(state => state.usuarioEmail);    
+    const [carregando, setCarregando] = useState(0);
+    const [imagemAtual, setImagemAtual] = useState();
+    const [imagemNova, setImagemNova] = useState();
+
+    const storage = firebase.storage();
+    const db = firebase.firestore();
+    
+    var listaPacientes = [];
+    var listaAlimentos = [];
+    var textA = [];
+
+    useEffect( () => {
+        if(match.params.idPost){
+            firebase.firestore().collection('cardapios').doc(match.params.idPost).get().then( resultado => {
+                setNome(resultado.data().nome);
+                setPaciente(resultado.data().paciente);
+                setTipo(resultado.data().tipo);
+                setData(resultado.data().data);
+                setDescricao(resultado.data().descricao);
+                setImagemAtual(resultado.data().imagem);
+            });
+        }
+        listarPacientes();
+        listarAlimentos();
+    },[]);
+
+
+    function salvar(){
+
+        if(!nome || !tipo || !paciente || !calorias || !imagemNova){
+            setMsgTipo("erro");
+            setMsg("Preencha todos os campos e tente novamente.");
+        }else       
+        {
+            cadastrar();
+        }
+        
+    }
+
+    // Cadastrar 
+
+    function cadastrar(){
+        setCarregando(1);
+
+        storage.ref(`imagens/cardapios/${imagemNova.name}`).put(imagemNova).then( () => {
+           var b =[];
+            textAlimentos.map(item => {
+                b.push(''+item);
+            });
+
+            db.collection('cardapios').add({
+                nome: nome,
+                date: new Date(),
+                paciente: paciente,
+                calorias: parseInt( calorias),
+                descricao: descricao,
+                usuario: usuario,
+                alimentos: b,
+                imagem: imagemNova.name,
+                data: dataS,
+                hora: hora
+
+            }).then( ()=> {
+                setCarregando(0);
+                setMsg('Alimento Cadastrado com sucesso!');
+                setMsgTipo("ok");
+                setTimeout(()=>{ setMsgTipo('');; }, 5000);
+
+            }).catch(() =>{
+                setMsgTipo('erro');
+                setCarregando(0);
+            })
+        });
+    }
+
+    // Atualizar  
+
+    function atualizar() {
+        setCarregando(1);
+        setMsgTipo(null)
+
+        if(imagemNova)
+            storage.ref(`imagens/cardapios/${imagemNova.name}`).put(imagemNova);
+       
+        db.collection('cardapios').doc(match.params.idPost).update({
+            nome: nome,
+            paciente: paciente,
+            calorias: parseInt( calorias),
+            descricao: descricao,
+            tipo: tipo,
+            imagem: imagemNova ? imagemNova.name : imagemAtual
+        }).then( ()=>{
+            setMsgTipo('ok');
+            setCarregando(0);
+        }).catch( () =>{
+            setMsgTipo('erro');
+            setCarregando(0);
+        })
+
+
+    }
+
+
+    function listarPacientes() {
+        firebase.firestore().collection('usuarios').where('profissional', '==', usuario).get().then(async (resultado)=> {
+            
+            await resultado.docs.forEach( doc => {
+
+                    listaPacientes.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+            })
+            
+            setPacientes(listaPacientes);
+
+        })
+    }
+
+    function listarAlimentos() {
+        firebase.firestore().collection('alimentos').where('usuario', '==', usuario).get().then(async (resultado)=> {
+            
+            await resultado.docs.forEach( doc => {
+                
+                    listaAlimentos.push({
+                        id: doc.id,
+                        ...doc.data()
+                    })
+            })
+            
+            setAlimentos(listaAlimentos);
+
+        })
+    }
+
     return(
         <>
         <NavBar active="cardapio" />
@@ -11,40 +167,85 @@ function CadastrarCardapio(){
                 <div class="container col-lg-4 col-md-8 col-sm-12 row">
                     <h3 className="text-success mb-3 text-center">Cadastro de Cardapio</h3>
 
-                    <form class="col-lg-12 mb-4" action="alimentos.html">
+                    <form class="col-lg-12 mb-4">
                         <div class="form-group">
                             <label className="text-success" for="exampleFormControlInput1" >Nome</label>
-                            <input type="text" class="mb-4  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
+                            <input onChange={(e)=>setNome(e.target.value)} type="text" class="mb-4  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
                         </div>
                         <div class="mb-4 form-group">
-                            <label className="text-success" for="exampleFormControlSelect1" >Categoria</label>
-                            <select class="form-control  text-success" placeholder="Categoria" id="CategoriaFormControlSelect1">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <label className="text-success" for="exampleFormControlSelect1" >Paciente</label>
+                            <select onChange={(e)=>setPaciente(e.target.value)} class="form-control  text-success" placeholder="Paciente" id="CategoriaFormControlSelect1">
+                                { pacientes.map( item => <option value={item.id}>{item.nome}</option>)}
                             </select>
                         </div>
-                        <div className="mb-4 form-group">
-                        <label className="text-success" for="exampleFormControlInput1">Calorias</label>
-                        <input type="number" className="form-control text-success"  placeholder="Caloria" id="caloriasFormControlInput1" />
+
+                        <div className="form-group row">
+                            <div className="col-6">
+                                <label>Data:</label>
+                                <input onChange={(e) => setDataS(e.target.value)} value={ data } type="date" className="form-control" />
+                            </div>
+                            <div className="col-6">
+                                <label>Horario:</label>
+                                <input onChange={(e) => setHora(e.target.value)} value={ hora } type="time" className="form-control" />
+                            </div>
                         </div>
+
+                        <div className="mb-3 form-group">
+                        <label className="text-success" for="exampleFormControlInput1">Calorias</label>
+                        <input onChange={(e)=>setCalorias(e.target.value)} type="number" className="form-control text-success"  placeholder="Caloria" id="caloriasFormControlInput1" />
+                        </div>
+
+
+
+
+                        <div className="mb-4 form-group">
+                            <label className="row text-success">Alimentos: {textAlimentos.map( item => <>{item}, </>)}</label>
+                            <button  type="button" data-bs-toggle="modal" data-bs-target="#alimentoModal" class="btn btn-success m-2">+</button>
+                            <button  type="button" onClick={()=>setTextAlimentos([])} class="btn btn-success">Limpar</button>
                         
+
+
+                            <div class="modal fade" id="alimentoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                
+                                    <ul>
+                                        
+                                    {
+                                        
+                                        alimentos.map( item => <li onClick={()=>{textA.push(item.nome);setTextAlimentos(oldArray => [...oldArray, textA])}} data-bs-dismiss="modal"  class="item-alimento">{item.nome}</li>)
+                                    }
+                                    </ul>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-success">Adicionar Alimento</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div className="mb-4 form-group">
+                            <label className=" text-success">Upload de imagem:</label>
+                            <input onChange={ (e) => { setImagemNova(e.target.files[0]);  } } type="file" className="form-control" />    
+                        </div>
                         <div className="form-group">
-                            <label className="text-success" for="exampleFormControlTextarea1">Descrição</label>
-                            <textarea className="form-control text-success" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3" />
+                            <label  className="text-success" for="exampleFormControlTextarea1">Descrição</label>
+                            <textarea onChange={(e)=>setDescricao(e.target.value)} className="form-control text-success" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3" />
                         </div>
                     </form>
-                    {
-                        alertAdd ? 
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Holy guacamole!</strong> You should check in on some of those fields below.
-                                <button onClick={ ()=>{setAlertAdd(!alertAdd)}} type="button" class="btn-close" aria-label="Close"></button>
-                            </div>
-                        : null
+                    
+                    {msgTipo === 'erro' &&  <AlertField msgTipo={msgTipo} msg={msg} func={()=> setMsgTipo(null)} />}
+                    {msgTipo === 'ok' && <AlertField msgTipo={msgTipo} msg={msg}  />}
+                    {carregando ? <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading...</span></div> : 
+                     <button  onClick={salvar}  class="btn btn-success">Salvar</button>
                     }
-                    <button  onClick={()=>{setAlertAdd(!alertAdd)}}  class="btn btn-success">Salvar</button>
                 </div>
             </main> 
         </>

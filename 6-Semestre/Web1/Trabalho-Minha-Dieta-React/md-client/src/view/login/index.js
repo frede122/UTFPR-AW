@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Redirect} from 'react-router-dom';
-
-import { useSelector, useDispatch} from 'react-redux';
-
-import firebase from '../../config/firebase';
-
-
-import NavBar from '../../component/navbar';
 import './login.css';
 import ImgLogin from '../../img/icon/login.svg';
+import AlertField from '../../component/alertField';
+
+import { Link, Redirect} from 'react-router-dom';
+import { useSelector, useDispatch} from 'react-redux';
+import firebase from '../../config/firebase';
+
 
 
 
@@ -16,7 +14,9 @@ function Login(){
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
     const [msgTipo, setMsgTipo] = useState();
+    const [msg, setMsg] = useState();
     const [level, setLevel] = useState();
+    const [uid, setUid] = useState();
 
     const dispatch = useDispatch();
 
@@ -29,6 +29,7 @@ function Login(){
             
             await resultado.docs.forEach( doc => {
                 setLevel(doc.data().level);
+                setUid(doc.id);
             })
             
         })
@@ -40,12 +41,15 @@ function Login(){
         firebase.auth().signInWithEmailAndPassword(email, senha).then( async resultado => {
 
             //alert(level);
+            setMsgTipo('ok');
+            setMsg("Conectado com sucesso!");
             setTimeout(()=>{
-                dispatch({type: 'LOGIN', usuarioEmail: email, usuarioTipo:level});
+                dispatch({type: 'LOGIN', usuarioEmail: email, usuarioTipo:level, usuarioId: uid });
             }, 2000);
             
             
         }).catch(erro => {
+            setMsg("mail ou senha incorreta, verifique e tente novamente!");
             setMsgTipo('erro');  
         });
         
@@ -76,19 +80,8 @@ function Login(){
                             <label  className="text-success" for="exampleInputPassword1">Password</label>
                             <input onChange={(e)=>setSenha(e.target.value)} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" />
                         </div>
-                        {
-                            msgTipo === 'erro' &&   
-                            <div class="mt-1 alert alert-danger alert-dismissible fade show" role="alert">
-                                <strong>Vishhh!, =/ </strong> Email ou senha incorreta, verifique e tente novamente!
-                                <button  type="button" class="btn-close" onClick={()=> setMsgTipo(null)} aria-label="Close"></button>
-                            </div>
-
-                        }
-
-                        {msgTipo === 'ok' && <div className="mt-2 alert alert-success" role="alert">  Conectado com sucesso! </div>}
-
-
-
+                        {msgTipo === 'erro' &&  <AlertField msgTipo={msgTipo} msg={msg} func={()=> setMsgTipo(null)} />}
+                        {msgTipo === 'ok' && <AlertField msgTipo={msgTipo} msg={msg}  />}
                         <div className="button-login row">
                             <button  onClick={autenticar} type="button" className="btn btn-success">Entrar</button>
                             
