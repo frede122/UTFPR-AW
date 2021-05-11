@@ -17,7 +17,7 @@ function NavBar({active = 'inicio'}){
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <Link className={ active === "inicio" ? "nav-link active" : 'nav-link'} aria-current="page" to="home">Inicio</Link>
+                            <Link className={ active === "inicio" ? "nav-link active" : 'nav-link'} aria-current="page" to="/home">Inicio</Link>
                         </li>
                         <li className="nav-item">
                             <Link className={ active === "meuperfil" ? "nav-link active" : 'nav-link'} to="meu-perfil">Meu Perfil</Link>
@@ -29,8 +29,8 @@ function NavBar({active = 'inicio'}){
                                     Paciente
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="cadastrar-usuario">Cadastrar</Link></li>
-                                    <li><Link className="dropdown-item" to="lista-usuarios">Ver / Editar</Link></li>
+                                    <li><Link className="dropdown-item" to="/cadastrar-usuario">Cadastrar</Link></li>
+                                    <li><Link className="dropdown-item" to="/lista-usuarios">Ver / Editar</Link></li>
                                 </ul>
                             </li>
                             <li className="nav-item dropdown">
@@ -38,8 +38,8 @@ function NavBar({active = 'inicio'}){
                                     Alimentos
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="cadastrar-alimentos">Cadastrar</Link></li>
-                                    <li><Link className="dropdown-item" to="alimentos">Ver / Editar</Link></li>
+                                    <li><Link className="dropdown-item" to="/cadastrar-alimentos">Cadastrar</Link></li>
+                                    <li><Link className="dropdown-item" to="/alimentos">Ver / Editar</Link></li>
                                 </ul>
                             </li>
                         
@@ -48,18 +48,18 @@ function NavBar({active = 'inicio'}){
                                     Cardapio
                                 </Link>
                                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><Link className="dropdown-item" to="cadastrar-cardapio">Cadastrar</Link></li>
-                                    <li><Link className="dropdown-item" to="cardapios">Ver / Editar</Link></li>
+                                    <li><Link className="dropdown-item" to="/cadastrar-cardapio">Cadastrar</Link></li>
+                                    <li><Link className="dropdown-item" to="/cardapios">Ver / Editar</Link></li>
                                 </ul>
                             </li>
                         </>:
                             <li className="nav-item">
-                                <Link className={ active === "cardapio" ? "nav-link active" : "nav-link"} aria-current="page" to="cardapios">Cardapio</Link>
+                                <Link className={ active === "cardapio" ? "nav-link active" : "nav-link"} aria-current="page" to="/cardapios">Cardapio</Link>
                             </li>
                         }
                         
                         <li className="nav-item">
-                            <Link className={ active === "contato" ? "nav-link active" : "nav-link"} aria-current="page" to="contato">Contato</Link>
+                            <Link className={ active === "contato" ? "nav-link active" : "nav-link"} aria-current="page" to="/contato">Contato</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link-danger active nav-link" aria-current="page" onClick={() => dispatch({ type: 'LOGOUT'})} >Sair</Link>

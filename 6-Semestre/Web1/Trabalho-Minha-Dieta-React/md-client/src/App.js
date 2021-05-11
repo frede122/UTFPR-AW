@@ -31,6 +31,7 @@ function App() {
 
           <PrivateRoute exact path='/meu-perfil' component={ MeuPerfil } usuarioTipo={0} componentRedirect={Login} /> 
           <PrivateRoute exact path='/lista-usuarios' component={ Usuario} componentRedirect={Login} />
+          <PrivateRoute exact path='/usuario/edit/:idPost' component={ CadastrarUsuario} componentRedirect={Login} />
           <PrivateRoute exact path='/cadastrar-usuario' component={CadastrarUsuario} componentRedirect={Login} />
 
           <PrivateRoute exact path='/alimentos' component={ Alimentos } usuarioTipo={0} componentRedirect={Login} />

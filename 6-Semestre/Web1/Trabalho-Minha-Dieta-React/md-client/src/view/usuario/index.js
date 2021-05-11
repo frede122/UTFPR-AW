@@ -40,7 +40,7 @@ function Usuario(){
             <NavBar active="pacientes" />
             <main id="cad-perfil" className="cadastro">
                 <div className="container col-12 row">
-                    <h1>Lista de perfis de pacientes</h1>
+                    <h1>Perfis de pacientes</h1>
                     <hr class="separator solid " />
                     <table> 
                         <tr>
