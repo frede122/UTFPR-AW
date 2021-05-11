@@ -35,11 +35,13 @@ function App() {
           <PrivateRoute exact path='/cadastrar-usuario' component={CadastrarUsuario} componentRedirect={Login} />
 
           <PrivateRoute exact path='/alimentos' component={ Alimentos } usuarioTipo={0} componentRedirect={Login} />
+          <PrivateRoute exact path='/alimentos/edit/:idPost' component={ CadastrarAlimentos } usuarioTipo={0} componentRedirect={Login} />
           <PrivateRoute exact path='/cadastrar-alimentos' component={ CadastrarAlimentos } componentRedirect={Login}/>
           
 
           <PrivateRoute exact path='/cadastrar-cardapio' component={ CadastrarCardapio} componentRedirect={Login} />
           <PrivateRoute exact path='/cardapios' component={ Cardapio }  usuarioTipo={0} componentRedirect={Login} />
+          <PrivateRoute exact path='/cardapio/edit/:idPost' component={ CadastrarCardapio }  usuarioTipo={0} componentRedirect={Login} />
 
 
           <PrivateRoute path='/contato' component={ Contato}  usuarioTipo={0} componentRedirect={Login} />

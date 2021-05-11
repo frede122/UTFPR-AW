@@ -21,8 +21,6 @@ function CadastrarSolidos({match}){
     const [tipo, setTipo] = useState("Comida");
 
     const [carregando, setCarregando] = useState(0);
-    const [imagemAtual, setImagemAtual] = useState();
-    const [imagemNova, setImagemNova] = useState();
 
     const usuario = useSelector(state => state.usuarioEmail);    
      
@@ -38,14 +36,13 @@ function CadastrarSolidos({match}){
                 setTipo(resultado.data().tipo);
                 setData(resultado.data().data);
                 setDescricao(resultado.data().descricao);
-                setImagemAtual(resultado.data().imagem);
             });
         }
     },[]);
 
     function salvar(){
 
-        if(!nome || !tipo || !categoria || !tipo || !calorias || !descricao || !imagemNova){
+        if(!nome || !tipo || !categoria || !tipo || !calorias || !descricao ){
             setMsgTipo("erro");
             setMsg("Preencha todos os campos e tente novamente.");
         }else       
@@ -60,7 +57,6 @@ function CadastrarSolidos({match}){
     function cadastrar(){
         setCarregando(1);
 
-        storage.ref(`imagens/alimentos/${imagemNova.name}`).put(imagemNova).then( () => {
             db.collection('alimentos').add({
                 nome: nome,
                 date: new Date(),
@@ -69,7 +65,6 @@ function CadastrarSolidos({match}){
                 descricao: descricao,
                 usuario: usuario,
                 tipo: tipo,
-                imagem: imagemNova.name,
 
             }).then( ()=> {
                 setCarregando(0);
@@ -81,7 +76,6 @@ function CadastrarSolidos({match}){
                 setMsgTipo('erro');
                 setCarregando(0);
             })
-        });
     }
 
     // Atualizar  
@@ -90,8 +84,6 @@ function CadastrarSolidos({match}){
         setCarregando(1);
         setMsgTipo(null)
 
-        if(imagemNova)
-            storage.ref(`imagens/alimentos/${imagemNova.name}`).put(imagemNova);
        
         db.collection('alimentos').doc(match.params.idPost).update({
             nome: nome,
@@ -99,7 +91,6 @@ function CadastrarSolidos({match}){
             calorias: parseInt( calorias),
             descricao: descricao,
             tipo: tipo,
-            imagem: imagemNova ? imagemNova.name : imagemAtual
         }).then( ()=>{
             setMsgTipo('ok');
             setCarregando(0);
@@ -178,10 +169,10 @@ function CadastrarSolidos({match}){
                         <input onChange={(e)=>setCalorias(e.target.value)} type="number" class="form-control"  placeholder="Caloria" id="caloriasFormControlInput1" />
                         </div>
 
-                        <div className="form-group">
+                        {/* <div className="form-group">
                             <label className="mt-2 text-success">Upload de imagem:</label>
                             <input onChange={ (e) => { setImagemNova(e.target.files[0]);  } } type="file" className="form-control" />    
-                        </div>
+                        </div> */}
 
                         <div className="mt-2 form-group">
                             <label className="text-success" for="exampleFormControlTextarea1">Descrição</label>

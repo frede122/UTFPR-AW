@@ -4,7 +4,7 @@ import AlertField from '../../../component/alertField';
 import './cadastrar-cardapio.css';
 
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import firebase from '../../../config/firebase';
 
 function CadastrarCardapio({match}){
@@ -43,6 +43,8 @@ function CadastrarCardapio({match}){
                 setPaciente(resultado.data().paciente);
                 setTipo(resultado.data().tipo);
                 setData(resultado.data().data);
+                setHora(resultado.data().hora);
+                setCalorias(resultado.data().calorias);
                 setDescricao(resultado.data().descricao);
                 setImagemAtual(resultado.data().imagem);
             });
@@ -50,6 +52,35 @@ function CadastrarCardapio({match}){
         listarPacientes();
         listarAlimentos();
     },[]);
+
+    function atualizar() {
+        setCarregando(1);
+        setMsgTipo(null)
+
+        if(imagemNova)
+            storage.ref(`imagens/${imagemNova.name}`).put(imagemNova);
+       
+        db.collection('posts').doc(match.params.idPost).update({
+            nome:nome,
+            paciente: paciente,
+            tipo: tipo,
+            data: data,
+            hora: hora,
+            calorias: calorias,
+            descricao: descricao,
+            imagem: imagemNova ? imagemNova.name : imagemAtual
+        }).then( ()=>{
+            setCarregando(0);
+            setMsg('Cardapio Cadastrado com sucesso!');
+            setMsgTipo("ok");
+            setTimeout(()=>{ setMsgTipo('');; }, 5000);
+        }).catch( () =>{
+            setMsgTipo('erro');
+            setCarregando(0);
+        })
+
+
+    }
 
 
     function salvar(){
@@ -89,7 +120,7 @@ function CadastrarCardapio({match}){
 
             }).then( ()=> {
                 setCarregando(0);
-                setMsg('Alimento Cadastrado com sucesso!');
+                setMsg('Cardapio Cadastrado com sucesso!');
                 setMsgTipo("ok");
                 setTimeout(()=>{ setMsgTipo('');; }, 5000);
 
@@ -102,6 +133,11 @@ function CadastrarCardapio({match}){
 
     // Atualizar  
 
+    function exclui(){
+        db.collection('cardapios').doc(match.params.idPost).delete().then(()=>{
+        })
+        {<Redirect to="/home" ></Redirect>}
+    }
     function atualizar() {
         setCarregando(1);
         setMsgTipo(null)
@@ -114,11 +150,13 @@ function CadastrarCardapio({match}){
             paciente: paciente,
             calorias: parseInt( calorias),
             descricao: descricao,
-            tipo: tipo,
+            alimentos: alimentos ? alimentos : null,
             imagem: imagemNova ? imagemNova.name : imagemAtual
         }).then( ()=>{
-            setMsgTipo('ok');
             setCarregando(0);
+            setMsg('Cardapio Alterado com sucesso!');
+            setMsgTipo("ok");
+            setTimeout(()=>{ setMsgTipo('');; }, 5000);
         }).catch( () =>{
             setMsgTipo('erro');
             setCarregando(0);
@@ -170,11 +208,13 @@ function CadastrarCardapio({match}){
                     <form class="col-lg-12 mb-4">
                         <div class="form-group">
                             <label className="text-success" for="exampleFormControlInput1" >Nome</label>
-                            <input onChange={(e)=>setNome(e.target.value)} type="text" class="mb-4  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
+                            <input value={ nome }onChange={(e)=>setNome(e.target.value)} type="text" class="mb-4  text-success form-control" placeholder="Nome" id="nomeFormControlInput1" />
                         </div>
                         <div class="mb-4 form-group">
                             <label className="text-success" for="exampleFormControlSelect1" >Paciente</label>
-                            <select onChange={(e)=>setPaciente(e.target.value)} class="form-control  text-success" placeholder="Paciente" id="CategoriaFormControlSelect1">
+                            
+                            <select value={ paciente }onChange={(e)=>setPaciente(e.target.value)} class="form-control  text-success" placeholder="Paciente" id="CategoriaFormControlSelect1">
+                                <option></option>
                                 { pacientes.map( item => <option value={item.id}>{item.nome}</option>)}
                             </select>
                         </div>
@@ -192,7 +232,7 @@ function CadastrarCardapio({match}){
 
                         <div className="mb-3 form-group">
                         <label className="text-success" for="exampleFormControlInput1">Calorias</label>
-                        <input onChange={(e)=>setCalorias(e.target.value)} type="number" className="form-control text-success"  placeholder="Caloria" id="caloriasFormControlInput1" />
+                        <input value={ calorias }onChange={(e)=>setCalorias(e.target.value)} type="number" className="form-control text-success"  placeholder="Caloria" id="caloriasFormControlInput1" />
                         </div>
 
 
@@ -237,14 +277,15 @@ function CadastrarCardapio({match}){
                         </div>
                         <div className="form-group">
                             <label  className="text-success" for="exampleFormControlTextarea1">Descrição</label>
-                            <textarea onChange={(e)=>setDescricao(e.target.value)} className="form-control text-success" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3" />
+                            <textarea value={ descricao }onChange={(e)=>setDescricao(e.target.value)} className="form-control text-success" placeholder="Descrição" id="exampleFormControlTextarea1" rows="3" />
                         </div>
                     </form>
                     
                     {msgTipo === 'erro' &&  <AlertField msgTipo={msgTipo} msg={msg} func={()=> setMsgTipo(null)} />}
                     {msgTipo === 'ok' && <AlertField msgTipo={msgTipo} msg={msg}  />}
                     {carregando ? <div class="spinner-border text-success" role="status"><span class="visually-hidden">Loading...</span></div> : 
-                     <button  onClick={salvar}  class="btn btn-success">Salvar</button>
+                     <><button  onClick={match.params.idPost ? atualizar : salvar}  class="btn btn-success">Salvar</button>
+                     {match.params.idPost ?<button  onClick={exclui}  class="btn mt-2 btn-success">Excluir</button>: null}</>
                     }
                 </div>
             </main> 

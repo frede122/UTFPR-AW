@@ -20,7 +20,7 @@ function NavBar({active = 'inicio'}){
                             <Link className={ active === "inicio" ? "nav-link active" : 'nav-link'} aria-current="page" to="/home">Inicio</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className={ active === "meuperfil" ? "nav-link active" : 'nav-link'} to="meu-perfil">Meu Perfil</Link>
+                            <Link className={ active === "meuperfil" ? "nav-link active" : 'nav-link'} to="/meu-perfil">Meu Perfil</Link>
                         </li>
                         { useSelector(state => state.usuarioTipo) > 0 ?
                         <>

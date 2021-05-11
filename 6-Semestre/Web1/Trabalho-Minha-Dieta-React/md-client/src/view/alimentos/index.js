@@ -1,9 +1,39 @@
 import React from 'react';
+import { useEffect } from 'react';
 import LineList from '../../component/line-list';
 import NavBar from '../../component/navbar';
 import './alimentos.css';
+import firebase from '../../config/firebase';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Alimentos() {
+    const [alimentos, setAlimentos] = useState([]);
+    const [paciente, setPaciente] = useState([]);
+    
+    const profissional = useSelector(state => state.usuarioEmail);
+
+    var listaAlimentos = [];
+
+    useEffect( () => {
+        firebase.firestore().collection('alimentos').where('usuario', '==', profissional).get().then( async(resultadoCard)=> {
+            
+            await resultadoCard.docs.forEach( doc => {
+                
+
+                    listaAlimentos.push({
+                        id: doc.id,
+                        ...doc.data()
+    
+                    })
+                    setAlimentos(listaAlimentos);
+
+                
+            })
+            
+
+        })
+    },[]);
     return(
         
         <>
@@ -18,10 +48,9 @@ function Alimentos() {
                             <th>Calorias</th>
                             <th>Categoria</th>
                         </tr>
-                        <LineList itens={['Maçã', '310', 'solido']}  link={'ssd'} />
-                        <LineList itens={['Banana', '328', 'solido']}  link={'ssd'} />
-                        <LineList itens={['Pera', '145', 'solido']}  link={'ssd'} />
-                        <LineList itens={['Vitamina banan com pera', '500', 'liquido']}  link={'ssd'} />
+                        {alimentos.map(item=> <LineList itens={[item.nome, item.calorias, item.categoria ]}  link={`alimentos/edit/${item.id}`} />)
+                        }
+                       
                         
                     </table>
                 </div>

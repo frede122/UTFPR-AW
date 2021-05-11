@@ -57,7 +57,7 @@ function Cardapio(){
                             <th>dia</th>
                             <th>Horario</th>
                         </tr>
-                        {cardapios.map(item=> <LineList itens={[item.nomP, item.calorias, item.data, item.hora]}  link={`cardapios/edit/${item.id}`} />)
+                        {cardapios.map(item=> <LineList itens={[item.nomP, item.calorias, item.data, item.hora]}  link={`cardapio/edit/${item.id}`} />)
                         }
                         
                     </table>
