@@ -23,12 +23,20 @@ int fatal(char *str1, char *str2) {
 }
 
 
-  void getHash512(char *hash, char *mensagem){
-    unsigned char *hashTemp = SHA512(mensagem, strlen(mensagem), NULL);
-    for(int i=0; i < 64; i++){
-      sprintf(hash, "%02x", hashTemp[i]);
+void sha512_string(char *string, char *outputBuffer)
+{
+    unsigned char hash[SHA512_DIGEST_LENGTH];
+    SHA512_CTX sha512;
+    SHA512_Init(&sha512);
+    SHA512_Update(&sha512, string, strlen(string));
+    SHA512_Final(hash, &sha512);
+    for(int i = 0; i < SHA512_DIGEST_LENGTH; i++)
+    {
+        sprintf(outputBuffer + (i * 2), "%02x", hash[i]);
     }
+    outputBuffer[strlen(outputBuffer)] = 0;
 }
+
 
 // Funcao principal da aplicacao cliente
 int main(int argc, char *argv[]) {
@@ -67,20 +75,19 @@ int main(int argc, char *argv[]) {
     while(strcmp(buffer_input,"-1\n") != 0) {
       printf(" Entre com um valor entre 0 e 255 para representar o valor do sensor a ser enviado para o servidor ou com o valor -1 para encerrar a aplicacao:\n");
       fgets(buffer_input, BUF_SIZE, stdin);
+      char hashTemp[129];
+      sha512_string(buffer_input, hashTemp);
       if (strcmp(buffer_input,"-1\n") != 0) {
         // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
-        write(socket_client, buffer_input, (strlen(buffer_input) + 1));
-        
-        // char *nome = (char*) malloc((strlen(buffer_input)+1) * sizeof(char));
-        // strcpy(nome, buffer_input);
-        char nome[65];
-        char ha[100];
-        strcpy(ha, buffer_input);
-        getHash512(nome, ha);
-        printf("\n\n %lu",strlen(buffer_input));
-        getHash512(nome, "fred\n");
+        write(socket_client, hashTemp, (strlen(hashTemp) + 1));
+
+        // printf("\n hash %s ", hashTemp);
         read(socket_client, buffer_output, BUF_SIZE);
-        printf(" Resposta do servidor: %s\n", buffer_output);
+        printf("\n Resposta do servidor: Hash recebido - %s\n", buffer_output);
+
+        write(socket_client, buffer_input, (strlen(buffer_input) + 1));
+        read(socket_client, buffer_output, BUF_SIZE);
+        printf(" Resposta do servidor: Hash computado - %s\n", buffer_output);
       }
     }
   }
