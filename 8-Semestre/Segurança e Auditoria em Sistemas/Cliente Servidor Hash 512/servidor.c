@@ -38,8 +38,7 @@ int write_value(char *prateleira, char *text) {
   return(size);
 }
 
-//Funcao que cria um hash de sha512 e converte de unsigned para string
-
+//Funcao que cria um hash de sha512 e converte de unsigned char para char string
 void sha512_string(char *string, char *outputBuffer)
 {
     unsigned char hash[SHA512_DIGEST_LENGTH];
@@ -61,6 +60,7 @@ int main(int argc, char *argv[])
   char hashInput[129];
   char hashOutput[129];
   char hashSend[160];
+
   int server_socket, socket_connection, on;
   int writing_success = 0;
   char buffer_input[BUF_SIZE];
@@ -108,19 +108,12 @@ int main(int argc, char *argv[])
           read(socket_connection, buffer_input, BUF_SIZE);
           if(i ==0 ){
             strcpy(hashInput, buffer_input);
+            printf("Hash Cliente - %s\n ", hashInput);
             write(socket_connection, buffer_input, strlen(buffer_input)+1);
           }else{
             sha512_string(buffer_input, hashOutput);
-            printf("Hash Calculo no servidor %s\n ", hashOutput);
+            printf("Hash Calculo no servidor - %s\n ", hashOutput);
             printf("Valor recebido: %s\n ", buffer_input);
-            // if(strcmp(hashInput, hashOutput) == 0){
-            //   printf("\n tudo ok \n");
-
-            // }else{
-            //   printf("\n não ta ok \n");
-            //   write(socket_connection, MSG_FAILED, strlen(MSG_FAILED)+1);
-            // }
-            // write(socket_connection, MSG_FAILED, strlen(MSG_FAILED)+1);
           }
 
         }
@@ -128,11 +121,8 @@ int main(int argc, char *argv[])
           if ((strcmp(buffer_input,"-1\n") != 0) && (strcmp(hashInput, hashOutput) == 0)) {
             writing_success = write_value(inet_ntoa(ip_client.sin_addr),buffer_input);
             if (writing_success) {
-              
-              strcpy(hashSend, hashOutput);
-              strcpy(hashSend, " \n");
-              strcpy(hashSend, MSG_SUCCESS);
-              write(socket_connection, hashSend, strlen(hashSend)+1);
+
+              write(socket_connection, MSG_SUCCESS, strlen(MSG_SUCCESS)+1);
             }
             else {
               // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
