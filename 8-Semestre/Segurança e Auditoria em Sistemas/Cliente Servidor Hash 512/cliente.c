@@ -10,6 +10,9 @@
 #include <netinet/in.h>
 #include <netdb.h>
 
+#include <openssl/sha.h>
+#include <string.h>
+
 #define SERVER_PORT 12345 // Porta do servidor
 #define BUF_SIZE	  1024  // Tamanho maximo dos buffers
 
@@ -17,6 +20,14 @@
 int fatal(char *str1, char *str2) {
   fprintf(stderr, str1, str2);
   exit(-1);
+}
+
+
+  void getHash512(char *hash, char *mensagem){
+    unsigned char *hashTemp = SHA512(mensagem, strlen(mensagem), NULL);
+    for(int i=0; i < 64; i++){
+      sprintf(hash, "%02x", hashTemp[i]);
+    }
 }
 
 // Funcao principal da aplicacao cliente
@@ -59,6 +70,15 @@ int main(int argc, char *argv[]) {
       if (strcmp(buffer_input,"-1\n") != 0) {
         // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
         write(socket_client, buffer_input, (strlen(buffer_input) + 1));
+        
+        // char *nome = (char*) malloc((strlen(buffer_input)+1) * sizeof(char));
+        // strcpy(nome, buffer_input);
+        char nome[65];
+        char ha[100];
+        strcpy(ha, buffer_input);
+        getHash512(nome, ha);
+        printf("\n\n %lu",strlen(buffer_input));
+        getHash512(nome, "fred\n");
         read(socket_client, buffer_output, BUF_SIZE);
         printf(" Resposta do servidor: %s\n", buffer_output);
       }

@@ -12,9 +12,12 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 
+#include <openssl/sha.h>
+#include <string.h>
+
 #define SERVER_PORT 12345		// Porta do servidor
 #define BUF_SIZE	  1024		// Tamanho maximo dos buffers
-#define MSG_SUCCESS	"Valor salvo com sucesso!"
+#define MSG_SUCCESS	"Valor salvo com sucesso! \n hash:"
 #define MSG_FAILED	"Nao foi possivel salvar o valor!"
 
 // Funcao para visualizar erros
@@ -34,6 +37,14 @@ int write_value(char *prateleira, char *text) {
   fclose(fp);
   return(size);
 }
+
+  void getHash512(char *hash, char *mensagem){
+    unsigned char *hashTemp = SHA512(mensagem, strlen(mensagem), NULL);
+    for(int i=0; i < 64; i++){
+      sprintf(hash, "%02x", hashTemp[i]);
+    }
+  }
+
 
 // Funcao principal da aplicacao servidor
 int main(int argc, char *argv[])
@@ -62,6 +73,8 @@ int main(int argc, char *argv[])
   if(listen(server_socket, 3) < 0)
     fatal("%s: listen() falhou\n", argv[0]);
 
+
+
   memset(&buffer_input, 0, sizeof(BUF_SIZE));
   printf("********************************************************\n");
   printf(" Servidor da Prateleiras Inteligentes iniciado com sucesso!\n");
@@ -83,7 +96,13 @@ int main(int argc, char *argv[])
         writing_success = write_value(inet_ntoa(ip_client.sin_addr),buffer_input);
         if (writing_success) {
           // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
-          write(socket_connection, MSG_SUCCESS, strlen(MSG_SUCCESS)+1);
+          char hashh[64];
+          getHash512(hashh, buffer_input);
+          char *temp = (char*)malloc(((strlen(MSG_SUCCESS)+1)+strlen(hashh)) * sizeof(char));
+          printf("%s", hashh);
+          strcpy(temp, MSG_SUCCESS);
+          strcat(temp, hashh);
+          write(socket_connection, MSG_SUCCESS, strlen(temp)+1);
         }
         else {
           // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
