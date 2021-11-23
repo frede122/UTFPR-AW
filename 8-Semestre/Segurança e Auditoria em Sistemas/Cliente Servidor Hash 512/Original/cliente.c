@@ -61,21 +61,21 @@ int main(int argc, char *argv[]) {
     printf(" Bem-vindo a aplicacao da Prateleiras Inteligentes!\n");
     printf("********************************************************\n\n");
     while(strcmp(buffer_input,"-1\n") != 0) {
-      printf(" Entre com um valor entre 0 e 255 para representar o valor do sensor a ser enviado para o servidor ou com o valor -1 para encerrar a aplicacao:\n");
+      printf("\nEntre com um valor entre 0 e 255 para representar o valor do sensor a ser enviado para o servidor ou com o valor -1 para encerrar a aplicacao:\n");
       fgets(buffer_input, BUF_SIZE, stdin);
       if (strcmp(buffer_input,"-1\n") != 0) {
 
         //Medicao de tempo do inicio do envio e resposta 
-        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start_envio_sha);
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &start_envio_msg);
 
         // O +1 adicionado ao tamanho considera o byte \0 para indicar o fim da string
         write(socket_client, buffer_input, (strlen(buffer_input) + 1));
         read(socket_client, buffer_output, BUF_SIZE);
 
         //Medicao de tempo do fim do envio e resposta 
-        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_envio_sha);
+        clock_gettime(CLOCK_PROCESS_CPUTIME_ID, &end_envio_msg);
 
-        printf(" Resposta do servidor: %s\n", buffer_output);
+        printf("Resposta do servidor: %s\n", buffer_output);
 
         // Print do total de tempo gasto para envio e confirmação da mensagem
         delta_us_envio_msg = (end_envio_msg.tv_sec - start_envio_msg.tv_sec) * 1000000 + (end_envio_msg.tv_nsec - start_envio_msg.tv_nsec) / 1000;
