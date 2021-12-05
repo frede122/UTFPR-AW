@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <string.h>
 #include <sys/types.h>
 #include <sys/fcntl.h>
 #include <sys/socket.h>
@@ -19,6 +18,7 @@
 #define BUF_SIZE	  1024		// Tamanho maximo dos buffers
 #define MSG_SUCCESS	"Valor salvo com sucesso!"
 #define MSG_FAILED	"Nao foi possivel salvar o valor!"
+#define MSG_FAILED_INTEGRITY	"Integridade violada, valor Nao pode ser salvo!"
 
 // Funcao para visualizar erros
 int fatal(char *str1, char *str2) {
@@ -118,8 +118,14 @@ int main(int argc, char *argv[])
 
         }
 
-          if ((strcmp(buffer_input,"-1\n") != 0) && (strcmp(hashInput, hashOutput) == 0)) {
-            writing_success = write_value(inet_ntoa(ip_client.sin_addr),buffer_input);
+          if ((strcmp(buffer_input,"-1\n") != 0) {
+            if(strcmp(hashInput, hashOutput) == 0)) {
+              writing_success = write_value(inet_ntoa(ip_client.sin_addr),buffer_input);
+            }
+            else{
+              write(socket_connection, MSG_FAILED_INTEGRITY, strlen(MSG_FAILED_INTEGRITY)+1);
+            }
+            
             if (writing_success) {
 
               write(socket_connection, MSG_SUCCESS, strlen(MSG_SUCCESS)+1);
