@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
         }
 
           if (strcmp(buffer_input,"-1\n") != 0) {
-            if(strcmp(hashInput, hashOutput) == 0)) {
+            if(strcmp(hashInput, hashOutput) == 0) {
               writing_success = write_value(inet_ntoa(ip_client.sin_addr),buffer_input);
             }
             else{
