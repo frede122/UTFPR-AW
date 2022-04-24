@@ -1,18 +1,33 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import PeopleListItem from "./PeopleListItem";
 
 const PeopleList = props => {
-    const {people} = props;
+    const {people, onPressItem} = props;
 
     const items = people.map(person =>{
-        return <PeopleListItem key={person.name.first} person={person} />
+        return <PeopleListItem 
+        key= {person.name.first} 
+        person= {person} 
+        onPressItem = {onPressItem}
+        />
     });
 
     return(
-        <View style={styles.container}>
-            { items }
-        </View>
+        <FlatList 
+            style={styles.container}
+            data={people}
+            renderItem={({item}) =>(
+                <PeopleListItem 
+                    person = {item}
+                    onPressItem = {onPressItem} 
+                />
+            )}
+            keyExtractor={ (item, index) => item.name.first+index}
+        
+        />
+
     )
 }
 

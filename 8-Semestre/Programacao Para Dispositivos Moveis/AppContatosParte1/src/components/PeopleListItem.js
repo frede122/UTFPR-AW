@@ -4,11 +4,14 @@ import capitalizeFirstLetter from '../utils/capitalizaFirstLetter';
 
 
 const PeopleListItem = props => {
-    const {person} = props;
+    const {person, onPressItem} = props;
     const {title, first, last} = person.name;
     const { thumbnail} = person.picture;
     return(
-        <TouchableOpacity onPress={console.log("oi")}>
+        <TouchableOpacity onPress={ () => {
+            onPressItem({person});
+        
+        }}>
             
             <View style={styles.line}>
                 <Image source={{ uri: thumbnail  }} style={styles.avatar} />
