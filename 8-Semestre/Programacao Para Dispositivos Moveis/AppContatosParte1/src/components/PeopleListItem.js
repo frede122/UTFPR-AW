@@ -10,7 +10,6 @@ const PeopleListItem = props => {
     return(
         <TouchableOpacity onPress={ () => {
             onPressItem({person});
-        
         }}>
             
             <View style={styles.line}>

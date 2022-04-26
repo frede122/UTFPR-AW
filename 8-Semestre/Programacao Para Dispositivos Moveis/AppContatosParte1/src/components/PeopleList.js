@@ -4,15 +4,7 @@ import { FlatList } from "react-native-gesture-handler";
 import PeopleListItem from "./PeopleListItem";
 
 const PeopleList = props => {
-    const {people, onPressItem} = props;
-
-    const items = people.map(person =>{
-        return <PeopleListItem 
-        key= {person.name.first} 
-        person= {person} 
-        onPressItem = {onPressItem}
-        />
-    });
+    const {people, onPressItem, navigation} = props;
 
     return(
         <FlatList 
@@ -24,8 +16,7 @@ const PeopleList = props => {
                     onPressItem = {onPressItem} 
                 />
             )}
-            keyExtractor={ (item, index) => item.name.first+index}
-        
+            keyExtractor={ (item, index) => item.name.first+index}    
         />
 
     )

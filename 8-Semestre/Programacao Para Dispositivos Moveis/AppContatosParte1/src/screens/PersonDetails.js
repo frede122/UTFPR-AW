@@ -12,6 +12,7 @@ export default class PersonDetails extends React.Component {
         const  {person}  = this.route.params;
         const picUrl = person.picture.large;
         return (
+            
             <View style={styles.container}>
                 
                 <Image source={{ uri: picUrl  }} style={styles.avatar} />

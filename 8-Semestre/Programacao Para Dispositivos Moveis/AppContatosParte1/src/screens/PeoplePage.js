@@ -71,7 +71,7 @@
                   :
                   <PeopleList 
                   people={this.state.people}
-                  onPressItem={(parameters)=>  this.props.navigation.navigate('PersonDetail', parameters)}
+                  onPressItem={(parameters) => this.props.navigation.navigate('PersonDetail', parameters)}
                   />
              }
            </View>
