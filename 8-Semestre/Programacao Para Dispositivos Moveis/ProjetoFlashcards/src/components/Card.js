@@ -1,16 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import {StyleDefault} from "../assets/styles/style";
 
 const Card = (props) => {
     const { imagem, texto, } = props;
     return(
-        <View style={style.card}>
-            <Image style={style.image} source={imagem} />
-            <Text style={style.text}>{texto}</Text>
+        <View style={styles.card}>
+            <Image style={styles.image} source={imagem} />
+            <Text style={styles.text}>{texto}</Text>
         </View>
     );
 }
-const style=StyleSheet.create({
+const styles=StyleSheet.create({
     card: {
         borderRadius: 4,
         width: '90%',

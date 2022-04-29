@@ -6,8 +6,8 @@ import 'react-native-gesture-handler';
  
  import Cadastro from './src/views/user/Cadastro'
 import Login from './src/views/user/Login';
-// import Cards from './src/components/Cards';
 import MinhasColecoes from './src/views/colecoes/MinhasColecoes';
+import Header from './src/components/Header';
  
  const Stack = createStackNavigator();
 
@@ -26,13 +26,22 @@ import MinhasColecoes from './src/views/colecoes/MinhasColecoes';
   }
 }
 
+const optionHeader = {
+  headerTitle: () => <Header />, 
+  headerStyle: { 
+      elevation:0, 
+      shadowOpacity:0, 
+      borderBottomWidth: 0
+  }
+}
+
  const App = (props) => {
    return(
 
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen  name="Cadastro"  component={Cadastro}/>
-        <Stack.Screen options={{display: 'none'}} name="Login" component={Login}/>
+        <Stack.Screen options={{...optionHeader}} name="Cadastro"  component={Cadastro}/>
+        <Stack.Screen options={{headerShown: false}} name="Login" component={Login}/>
         <Stack.Screen options={{...options, title: "Minhas Coleções"}} name="MinhasColecoes" component={MinhasColecoes}/>
       </Stack.Navigator>
     </NavigationContainer>

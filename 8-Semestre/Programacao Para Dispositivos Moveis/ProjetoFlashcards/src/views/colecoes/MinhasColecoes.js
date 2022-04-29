@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { Stack, TextInput, Button,  IconButton } from "@react-native-material/core";
+import { View, StyleSheet } from "react-native";
 import Card from "../../components/Card";
 import {ColorsImage, ArvoreImage, BolaImage, SetaImage, UrsoImage} from '../../assets/images'
 

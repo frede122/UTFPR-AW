@@ -2,6 +2,11 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
 import { Stack, TextInput, Button, IconButton } from "@react-native-material/core";
+import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
+
+
+import {StyleDefault} from "../../assets/styles/Style";
+import  Header  from '../../components/Header';
 
 
 
@@ -17,7 +22,12 @@ const Cadastro = (props) => {
                     <TextInput style={styles.input} label="E-mail"  />
                     <TextInput style={styles.input} secureTextEntry={true} label="Senha"  />
                     <TextInput style={styles.input} secureTextEntry={true} label="Repetir Senha"  />
-                    <Button onPress={() => props.navigation.navigate('Login')} style={styles.buttonCadastrar} title="CADASTRAR" color="#6A61A1"/>
+                    <Button 
+                        style={StyleDefault.buttonDefault} 
+                        onPress={() => props.navigation.navigate('Login')}  
+                        title="CADASTRAR" 
+                        color={buttonColorDefault}
+                    />
                 </Stack>
 
             </View>
@@ -29,7 +39,7 @@ const Cadastro = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#43405E",
+        backgroundColor: backgroundDefault,
         height: '100%',
         justifyContent: 'center'
         
@@ -42,12 +52,13 @@ const styles = StyleSheet.create({
         marginTop: 7,
         marginBottom: 7
     },
-    buttonCadastrar : {
+    buttonCadastrar: {
         height: 45,
         justifyContent: 'center',
-        fontSize: 14,
+        fontSize: 140,
         marginTop: 10
     },
+
     text: {
         fontSize: 28,
         color: "#fff",

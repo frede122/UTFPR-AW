@@ -4,6 +4,8 @@ import React from "react";
 import { Stack, TextInput, Button,  IconButton } from "@react-native-material/core";
 
 import Mind from '../../assets/images/mind.png'
+import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
+import { StyleDefault } from "../../assets/styles/Style";
 
 
 const Login = (props) => {
@@ -17,10 +19,19 @@ const Login = (props) => {
                     <TextInput style={styles.input} label="E-mail"  />
                     <TextInput style={styles.input} secureTextEntry={true} label="Senha"  />
                     <Text style={styles.text}>Esqueci a senha</Text>
-                    <Button style={styles.buttonCadastrar} onPress={ () => {props.navigation.navigate('MinhasColecoes')}} title="ENTRAR" color="#6A61A1"/>
+                    <Button 
+                        style={StyleDefault.buttonDefault} 
+                        onPress={ () => {props.navigation.navigate('MinhasColecoes')}} 
+                        title="ENTRAR" 
+                        color={buttonColorDefault}
+                    />
                 </Stack>
             </View>
-            <Button style={styles.buttonCadastrar, {margin: 16}} titleStyle={{color: '#fff'}} title="CADASTRE-SE" color="#B58D97"/>
+            <Button 
+                style={styles.buttonCadastrar, {margin: 16}} 
+                titleStyle={{color: '#fff'}} 
+                title="CADASTRE-SE" color="#B58D97"
+            />
 
             
         </View>
@@ -29,10 +40,16 @@ const Login = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: "#43405E",
+        backgroundColor: backgroundDefault,
         height: '100%',
         justifyContent: 'center'
         
+    },
+    buttonCadastrar: {
+        height: 45,
+        justifyContent: 'center',
+        fontSize: 140,
+        marginTop: 10
     },
     img:{
         width: 132,
@@ -48,12 +65,7 @@ const styles = StyleSheet.create({
         marginTop: 7,
         marginBottom: 7
     },
-    buttonCadastrar : {
-        height: 45,
-        justifyContent: 'center',
-        fontSize: 14,
-        marginTop: 10
-    },
+
 
     textHeader: {
         fontSize: 45,
