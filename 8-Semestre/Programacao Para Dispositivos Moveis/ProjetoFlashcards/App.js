@@ -1,5 +1,5 @@
 
- import React from 'react';
+ import * as React from 'react';
  import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import 'react-native-gesture-handler';
@@ -8,8 +8,14 @@ import 'react-native-gesture-handler';
 import Login from './src/views/user/Login';
 import MinhasColecoes from './src/views/colecoes/MinhasColecoes';
 import Header from './src/components/Header';
+
+
+import Menu from './src/components/Menu';
+
  
  const Stack = createStackNavigator();
+
+ 
 
  const options={
   title: "Flash Card",
@@ -40,10 +46,13 @@ const optionHeader = {
 
     <NavigationContainer>
       <Stack.Navigator >
+        <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
         <Stack.Screen options={{...optionHeader}} name="Cadastro"  component={Cadastro}/>
         <Stack.Screen options={{headerShown: false}} name="Login" component={Login}/>
+        
         <Stack.Screen options={{...options, title: "Minhas Coleções"}} name="MinhasColecoes" component={MinhasColecoes}/>
       </Stack.Navigator>
+
     </NavigationContainer>
    );
  }
