@@ -21,7 +21,7 @@ const Login = (props) => {
                     <Text style={styles.text}>Esqueci a senha</Text>
                     <Button 
                         style={StyleDefault.buttonDefault} 
-                        onPress={ () => {props.navigation.navigate('MinhasColecoes')}} 
+                        onPress={ () => {props.navigation.navigate('Menu')}} 
                         title="ENTRAR" 
                         color={buttonColorDefault}
                     />

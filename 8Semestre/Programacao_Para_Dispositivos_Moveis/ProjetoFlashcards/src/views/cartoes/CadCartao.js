@@ -12,10 +12,10 @@ const CadCartao = ({route, navigation}) => {
 
             <View  style={StyleDefault.container}>
                 <Text style={styles.text} >os dados da frente e do verso do flashcard</Text>
-                <CardObjetoCad onPressButton={() => {navigation.navigate('MinhasColecoes')}} />
+                <CardObjetoCad onPressButton={() => {navigation.goBack()}} />
                 <Button 
                     style={StyleDefault.buttonDefault, styles.button} 
-                    onPress={() => {navigation.navigate('MinhasColecoes')}} 
+                    onPress={() => {navigation.goBack()}} 
                     title="CANCELAR" 
                     variant="outlined"
                     color={styles.buttonCollor}

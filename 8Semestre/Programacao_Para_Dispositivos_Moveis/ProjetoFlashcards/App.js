@@ -30,7 +30,8 @@ import CadCartao from './src/views/cartoes/CadCartao';
   },
   headerStyle: {
       backgroundColor: "#4A4568",
-  }
+  },
+  headerShown: false
 }
 
 const optionHeader = {
@@ -47,13 +48,12 @@ const optionHeader = {
 
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
         <Stack.Screen options={{...optionHeader}} name="Cadastro"  component={Cadastro}/>
         <Stack.Screen options={{headerShown: false}} name="Login" component={Login}/>
 
+        <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
         
         
-        <Stack.Screen options={{...options, title: "Minhas Coleções"}} name="MinhasColecoes" component={MinhasColecoes}/>
       </Stack.Navigator>
 
     </NavigationContainer>
