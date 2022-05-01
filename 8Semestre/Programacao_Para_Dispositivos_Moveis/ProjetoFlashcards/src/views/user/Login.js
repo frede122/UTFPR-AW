@@ -4,7 +4,7 @@ import React from "react";
 import { Stack, TextInput, Button,  IconButton } from "@react-native-material/core";
 
 import Mind from '../../assets/images/mind.png'
-import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
+import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 import { StyleDefault } from "../../assets/styles/Style";
 
 
@@ -40,7 +40,7 @@ const Login = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: backgroundDefault,
+        backgroundColor: backgroundUser,
         height: '100%',
         justifyContent: 'center'
         

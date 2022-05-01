@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 
 import { Stack, TextInput, Button, IconButton } from "@react-native-material/core";
-import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
+import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 
 
 import { StyleDefault } from "../../assets/styles/Style";
@@ -39,7 +39,7 @@ const Cadastro = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: backgroundDefault,
+        backgroundColor: backgroundUser,
         height: '100%',
         justifyContent: 'center'
         

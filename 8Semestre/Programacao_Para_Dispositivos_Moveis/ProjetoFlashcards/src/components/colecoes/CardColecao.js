@@ -1,14 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 // import {StyleDefault} from "../assets/styles/style";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const Card = (props) => {
-    const { imagem, texto, } = props;
+const CardColecao = (props) => {
+    const {onPress, imagem, texto, } = props;
     return(
-        <View style={styles.card}>
-            <Image style={styles.image} source={imagem} />
-            <Text style={styles.text}>{texto}</Text>
-        </View>
+        <TouchableOpacity onPress={onPress}>
+
+            <View style={styles.card}>
+                <Image style={styles.image} source={imagem} />
+                <Text style={styles.text}>{texto}</Text>
+            </View>
+
+        </TouchableOpacity>
     );
 }
 const styles=StyleSheet.create({
@@ -34,4 +39,4 @@ const styles=StyleSheet.create({
         margin: 15
     }
 })
-export default Card;
+export default CardColecao;

@@ -11,6 +11,7 @@ import Header from './src/components/Header';
 
 
 import Menu from './src/components/Menu';
+import CadCartao from './src/views/cartoes/CadCartao';
 
  
  const Stack = createStackNavigator();
@@ -49,6 +50,8 @@ const optionHeader = {
         <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
         <Stack.Screen options={{...optionHeader}} name="Cadastro"  component={Cadastro}/>
         <Stack.Screen options={{headerShown: false}} name="Login" component={Login}/>
+
+        
         
         <Stack.Screen options={{...options, title: "Minhas Coleções"}} name="MinhasColecoes" component={MinhasColecoes}/>
       </Stack.Navigator>

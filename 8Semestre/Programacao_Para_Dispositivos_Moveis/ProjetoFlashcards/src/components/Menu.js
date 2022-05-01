@@ -3,9 +3,10 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { View } from 'react-native';
 import MinhasColecoes from '../views/colecoes/MinhasColecoes';
 import Login from '../views/user/Login';
-import { backgroundDefault } from '../assets/styles/Color';
+import { backgroundUser } from '../assets/styles/Color';
 import DrawerContent from './DrawerContent';
 import Icon from 'react-native-vector-icons/FontAwesome'
+import CadCartao from '../views/cartoes/CadCartao';
 
 const screenOptions={
   drawerStyle: {
@@ -21,7 +22,7 @@ const screenOptions={
 
 const optionHeader = {
   headerStyle: {
-    backgroundColor: backgroundDefault,
+    backgroundColor: backgroundUser,
   },
   headerTitleStyle:{
     color: '#ffffff',
@@ -42,9 +43,9 @@ export default function Menu() {
       screenOptions={screenOptions}
       drawerContent={(props) => <DrawerContent {...props}/>} 
     >
-
       <Drawer.Screen name="MinhaColecoes" options={{...optionHeader, drawerIcon: config =>  <Icon name="sliders" size={29} color="white" />, title: 'Minhas Coleções'}} component={MinhasColecoes} />
       <Drawer.Screen options={{...optionHeader}} name="Login" component={Login} />
+      <Drawer.Screen options={{...optionHeader, title: 'Coleção - objetos'}}  name="CadCartao" component={CadCartao}/>
     </Drawer.Navigator>
   );
 }

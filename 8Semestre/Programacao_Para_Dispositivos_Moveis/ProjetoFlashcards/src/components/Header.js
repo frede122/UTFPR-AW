@@ -1,7 +1,7 @@
 import React from "react";
 import { View,  Image, Text, StyleSheet, Dimensions} from "react-native";
 import {MindImage} from '../assets/images';
-import { backgroundDefault } from "../assets/styles/Color";
+import { backgroundUser } from "../assets/styles/Color";
 
 const Header = (props) => {
     
@@ -15,7 +15,7 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: backgroundDefault,
+        backgroundColor: backgroundUser,
         height: '100%',
         width: Dimensions.get('window').width,
         margin: 0,
