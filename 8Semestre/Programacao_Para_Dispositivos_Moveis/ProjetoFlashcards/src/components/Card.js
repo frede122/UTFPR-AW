@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
-import {StyleDefault} from "../assets/styles/style";
+// import {StyleDefault} from "../assets/styles/style";
 
 const Card = (props) => {
     const { imagem, texto, } = props;

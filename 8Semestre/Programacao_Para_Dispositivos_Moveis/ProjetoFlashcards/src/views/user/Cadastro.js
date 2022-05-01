@@ -5,7 +5,7 @@ import { Stack, TextInput, Button, IconButton } from "@react-native-material/cor
 import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
 
 
-import {StyleDefault} from "../../assets/styles/Style";
+import { StyleDefault } from "../../assets/styles/Style";
 import  Header  from '../../components/Header';
 
 
