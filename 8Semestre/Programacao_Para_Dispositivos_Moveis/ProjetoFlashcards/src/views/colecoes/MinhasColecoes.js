@@ -9,12 +9,12 @@ const MinhasColecoes = ({props, navigation}) => {
 return(
 <View  style={styles.container}>
         <View style={styles.button}>
-             <ButtonAdd style={styles.button} onPress={() => navigation.navigate('CadCartao', {text: 'oi gente'})}/>
+             <ButtonAdd style={styles.button} onPress={() => navigation.navigate('NovaColecao')} />
         </View>
 
         <ScrollView style={styles.colecoes}>
 
-            <CardColecao imagem={BolaImage} texto="Objetos" />
+            <CardColecao onPress={() => navigation.navigate('CadCartao')} imagem={BolaImage} texto="Objetos" />
             <CardColecao imagem={ColorsImage} texto="Cores" />
             <CardColecao imagem={UrsoImage} texto="Animais" />
             <CardColecao imagem={ArvoreImage} texto="Adjetivos" />

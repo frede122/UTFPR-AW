@@ -7,6 +7,7 @@ import { backgroundUser } from '../assets/styles/Color';
 import DrawerContent from './DrawerContent';
 import Icon from 'react-native-vector-icons/FontAwesome'
 import CadCartao from '../views/cartoes/CadCartao';
+import NovaColecao from '../views/colecoes/NovaColecao';
 
 const screenOptions={
   drawerStyle: {
@@ -46,6 +47,7 @@ export default function Menu() {
       <Drawer.Screen name="MinhaColecoes" options={{...optionHeader, drawerIcon: config =>  <Icon name="sliders" size={29} color="white" />, title: 'Minhas Coleções'}} component={MinhasColecoes} />
       <Drawer.Screen options={{...optionHeader}} name="Login" component={Login} />
       <Drawer.Screen options={{...optionHeader, title: 'Coleção - objetos'}}  name="CadCartao" component={CadCartao}/>
+      <Drawer.Screen options={{...optionHeader, title: 'Coleção - objetos'}}  name="NovaColecao" component={NovaColecao}/>
     </Drawer.Navigator>
   );
 }
