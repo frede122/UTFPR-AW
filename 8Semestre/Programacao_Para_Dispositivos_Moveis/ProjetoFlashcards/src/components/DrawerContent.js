@@ -10,7 +10,7 @@ export default function DrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <Profile imagem={UserImage} texto="Marcelo dos Santos" />
 
-        <DrawerItemList {...props} />
+        <DrawerItemList style={{labelStyle : {color:'white'}}}{...props} />
       </DrawerContentScrollView>
     );
   }

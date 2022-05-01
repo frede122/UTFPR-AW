@@ -5,12 +5,18 @@ import MinhasColecoes from '../views/colecoes/MinhasColecoes';
 import Login from '../views/user/Login';
 import { backgroundDefault } from '../assets/styles/Color';
 import DrawerContent from './DrawerContent';
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 const screenOptions={
   drawerStyle: {
     backgroundColor: '#25213E',
     width: 250,
   },
+  drawerLabelStyle: {
+    color: 'white'
+  },
+  drawerActiveBackgroundColor: 'none'
+
 }
 
 const optionHeader = {
@@ -37,7 +43,7 @@ export default function Menu() {
       drawerContent={(props) => <DrawerContent {...props}/>} 
     >
 
-      <Drawer.Screen name="MinhaColecoes" options={{...optionHeader,  title: 'Minhas Coleções'}} component={MinhasColecoes} />
+      <Drawer.Screen name="MinhaColecoes" options={{...optionHeader, drawerIcon: config =>  <Icon name="sliders" size={29} color="white" />, title: 'Minhas Coleções'}} component={MinhasColecoes} />
       <Drawer.Screen options={{...optionHeader}} name="Login" component={Login} />
     </Drawer.Navigator>
   );
