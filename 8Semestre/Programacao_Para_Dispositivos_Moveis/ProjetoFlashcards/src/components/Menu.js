@@ -32,6 +32,7 @@ const optionHeader = {
     fontSize: 20,
   
 },
+headerTintColor: '#fff',
 
 
 }

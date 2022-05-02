@@ -13,7 +13,7 @@ export default function DrawerContent(props) {
         <TouchableOpacity  onPress={()=>{props.navigation.navigate('MinhaColecoes')}}>
           <Text style={styles.text}>Minhas Coleções</Text>
         </TouchableOpacity>
-        <TouchableOpacity  onPress={()=>{props.navigation.navigate('MinhaColecoes')}}>
+        <TouchableOpacity  onPress={()=>{props.navigation.navigate('Login')}}>
           <Text style={styles.text}>Logout</Text>
         </TouchableOpacity>
       </DrawerContentScrollView>

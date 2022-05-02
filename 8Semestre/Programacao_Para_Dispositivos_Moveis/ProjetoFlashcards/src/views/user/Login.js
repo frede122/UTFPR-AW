@@ -31,13 +31,7 @@ export default class Login extends Component<Props> {
     }
 
     componentDidMount(){
-        // Import the functions you need from the SDKs you need
 
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
         const firebaseConfig = {
         apiKey: "AIzaSyCfMMK1-Ki03ZFsoOk8DFA2RD5_UvVRNEo",
         authDomain: "mindbooster-bbf12.firebaseapp.com",
@@ -51,9 +45,6 @@ export default class Login extends Component<Props> {
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        // const analytics = getAnalytics(app);
-
-        
 
     }
     processLogin(){
@@ -104,6 +95,7 @@ export default class Login extends Component<Props> {
                     style={styles.buttonCadastrar, {margin: 16}} 
                     titleStyle={{color: '#fff'}} 
                     title="CADASTRE-SE" color="#B58D97"
+                    onPress={()=>this.props.navigation.navigate('Cadastro')}
                 />
 
                 

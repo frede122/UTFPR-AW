@@ -41,6 +41,9 @@ const optionHeader = {
       elevation:0, 
       shadowOpacity:0, 
       borderBottomWidth: 0
+  },
+  headerLeft: {
+    color: 'white'
   }
 }
 
@@ -49,10 +52,10 @@ const optionHeader = {
 
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen options={{...optionHeader}} name="Cadastro"  component={Cadastro}/>
         <Stack.Screen options={{headerShown: false}} name="Login" component={Login}/>
-
+        <Stack.Screen options={{...optionHeader,headerLeft:null}} name="Cadastro"  component={Cadastro}/>
         <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
+
         
 
       
