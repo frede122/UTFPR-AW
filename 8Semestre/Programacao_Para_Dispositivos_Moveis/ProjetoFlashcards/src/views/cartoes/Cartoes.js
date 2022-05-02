@@ -1,12 +1,23 @@
 import React from "react";
 import { View, Text, StyleSheet} from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, FlatList } from "react-native-gesture-handler";
 import { StyleDefault } from "../../assets/styles/Style";
-import FlashCard from "../../components/colecoes/FlashCard";
+import FlashCardMini from "../../components/colecoes/FlashCardMini";
 import ButtonAdd from "../../components/utils/ButtonAdd";
 import { Stack, TextInput, Button} from "@react-native-material/core";
 
 const Cartoes = ({props, navigation}) => {
+    const data = [
+        {frente:"oi", verso:"hello"},
+        {frente:"gato", verso:"cat"},
+        {frente:"grande", verso:"big"},
+        {frente:"cachorro", verso:"dog"},
+        {frente:"amigo", verso:"friend"},
+        {frente:"azul", verso:"blue"},
+        {frente:"filho", verso:"son"},
+        {frente:"facil", verso:"easy"},
+        {frente:"carro", verso:"car"},
+        {frente:"banana", verso:"banana"} ]
     return(
         <View  style={StyleDefault.container}>
             <View style={styles.button}>
@@ -18,18 +29,18 @@ const Cartoes = ({props, navigation}) => {
                         <TextInput style={styles.input} label="Filtro"  />
                 </Stack>
             </View>
-            <Button title="Jogar!"  onPress={() => navigation.navigate('Jogar')} style={{color:'white'}} color="#57966A"/>
-            <ScrollView style={styles.colecoes}>
+            <Button title="Jogar!"  onPress={() => navigation.navigate('Jogar', {data})} style={{color:'white'}} color="#57966A"/>
 
-                <FlashCard frente="oi2" verso="hello1"  />
-                <FlashCard frente="oi3" verso="hello2" />
-                <FlashCard frente="oi2" verso="hello1"  />
-                <FlashCard frente="oi3" verso="hello2" />
-                <FlashCard frente="oi2" verso="hello1"  />
-                <FlashCard frente="oi3" verso="hello2" />
-                <FlashCard frente="oi2" verso="hello1"  />
-                <FlashCard frente="oi3" verso="hello2" />
-            </ScrollView>
+
+            <FlatList 
+                style={styles.colecoes}
+                data={data}
+                renderItem={({item}) =>(
+                        <FlashCardMini frente={item.frente} verso={item.verso}  />
+                    )}
+                keyExtractor={ (item, index) => item.frente+index}
+            />
+
             
         </View>
     )

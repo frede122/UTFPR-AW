@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
 import { Stack, TextInput, Button,} from "@react-native-material/core";
-import CardObjetoCad from "../../components/colecoes/CardObjetoCad";
+import FlashCard from "../../components/colecoes/FlashCard";
 import {StyleDefault} from '../../assets/styles/Style'
 import { TextInputAffix } from "react-native-paper/lib/typescript/components/TextInput/Adornment/TextInputAffix";
 import {BolaImage} from '../../assets/images';

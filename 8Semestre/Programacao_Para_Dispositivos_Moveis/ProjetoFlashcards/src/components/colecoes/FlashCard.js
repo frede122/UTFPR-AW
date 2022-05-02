@@ -1,66 +1,79 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView, TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import { Button} from "@react-native-material/core";
+import { StyleDefault } from "../../assets/styles/Style";
+import { buttonColorDefault } from "../../assets/styles/Color";
+
 
 
 const FlashCard = (props) => {
-    const {onPress,frente, verso } = props;
+    const { onPressButton = null, frente = null, verso= null} = props;
     return(
-        <TouchableOpacity onPress={onPress}>
+        <View style={ styles.container}>
 
-            <View style={styles.container}>
-                <View style={styles.card}>
-                    <Text style={styles.header}>Frente</Text>
-                    <Text style={styles.text}>{frente}</Text>
+            <View style={styles.containerCard}>
+                <View style={styles.frente}>
+                    <Text style={styles.text}>Frente</Text>
+                    <TextInput style={styles.textInput} value={frente}></TextInput>
+                </View>
+                <View style={styles.verso}>
+                    <Text style={styles.text}>Verso</Text>
+                    <TextInput style={styles.textInput} value={verso}></TextInput>
+                </View>
 
-                </View>
-                <View style={styles.card}>
-                    <Text style={styles.header}>Verso</Text>
-                    <Text style={styles.text}>{verso}</Text>
-                </View>
-                <View style={styles.option}>
-                    <Text >Editar</Text>
-                    <Text >Excluir</Text>
-                </View>
             </View>
-
-        </TouchableOpacity>
-
-    );
+            {!frente && !verso ?
+                <Button 
+                    style={StyleDefault.buttonDefault, styles.button} 
+                    onPress={onPressButton} 
+                    title="CADASTRAR" 
+                    color={buttonColorDefault}
+                /> : null
+            }
+        </View>
+    )
 }
 
-const styles=StyleSheet.create({
+const styles= StyleSheet.create({
     container: {
+        width: 300,
+        height: 'auto',
+        marginBottom: 60,
+    },
+    frente: {
+        width: 280,
+        borderStyle: 'dashed',
+        borderBottomWidth: 1,
+        marginLeft: 10,
+        borderColor: '#707070'
+    },
+    verso: {
+        width: 280,
+        marginLeft: 10
+    },
+    containerCard: {
         borderRadius: 13,
-        width: 330,
-        maxWidth: '100%',
-        height: 80,
+        width: 300,
+        height: 280,
         backgroundColor: '#ffffff',
-        alignSelf: 'center',
-        marginTop: 10,
-        marginBottom: 10,
-        flexDirection: 'row',
-        alignItems: "center",
-        padding: 10,
-        justifyContent: "space-around"
         
     },
-    card: {
-        margin: 5
+    button:{
+        width: 300,
+        marginTop: 20
     },
-    option: {
-        flexDirection: 'row'
-    },
-    image:{
-        margin: 15
+    textInput:{
+        margin: 10,
+        fontSize: 28,
+        textAlign: 'center',
+        textDecorationLine: 'underline line-through'
     },
     text: {
-        color: '#27ACA7',
-        fontFamily: 'Tahoma',
-        fontSize: 18,
-        margin: 2,
-        marginTop: 8
+        margin: 15,
+        fontSize: 18
     }
 })
 
 export default FlashCard;
+

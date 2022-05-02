@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { backgroundDefault, buttonColorDefault } from "../../assets/styles/Color";
 import { Button} from "@react-native-material/core";
-import CardObjetoCad from "../../components/colecoes/CardObjetoCad";
+import FlashCard from "../../components/colecoes/FlashCard";
 import {StyleDefault} from '../../assets/styles/Style'
 
 const CadCartao = ({route, navigation}) => {
@@ -12,7 +12,7 @@ const CadCartao = ({route, navigation}) => {
 
             <View  style={StyleDefault.container}>
                 <Text style={styles.text} >os dados da frente e do verso do flashcard</Text>
-                <CardObjetoCad onPressButton={() => {navigation.goBack()}} />
+                <FlashCard onPressButton={() => {navigation.goBack()}} />
                 <Button 
                     style={StyleDefault.buttonDefault, styles.button} 
                     onPress={() => {navigation.goBack()}} 
