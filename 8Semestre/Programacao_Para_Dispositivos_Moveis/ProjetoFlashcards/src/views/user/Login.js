@@ -6,6 +6,8 @@ import { Stack, TextInput, Button,  IconButton } from "@react-native-material/co
 import Mind from '../../assets/images/mind.png'
 import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 import { StyleDefault } from "../../assets/styles/Style";
+import validarEmail from "../../utils/validarEmail";
+import MessageError from "../../components/utils/MessageError";
 
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -18,7 +20,9 @@ export default class Login extends Component<Props> {
         this.handleChange = this.handleChange.bind(this);
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            messageEmail: null,
+            emailError: false
         }
 
     }
@@ -29,6 +33,8 @@ export default class Login extends Component<Props> {
       
         this.setState({[name]: value});
     }
+
+
 
     componentDidMount(){
 
@@ -52,17 +58,23 @@ export default class Login extends Component<Props> {
         const { email, password} = this.state;
 
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            this.props.navigation.navigate('Menu');
-            // ...
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage);
-        });
+        if(validarEmail(email)){
+            signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                this.props.navigation.navigate('Menu');
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage);
+            })
+        }else{
+            this.setState({
+                messageEmail : 'E-mail inválido', 
+                emailError : true
+            })
+        }
     }
     render(){
         return(
@@ -73,9 +85,12 @@ export default class Login extends Component<Props> {
                     <Stack   spacing={2} style={{ margin: 16 }}>
                         <TextInput 
                             style={styles.input} label="E-mail"
-                            onChangeText={(value) => this.setState({email: value})}
+                            onChangeText={(value) => this.setState({email: value, emailError : false, messageEmail:null})}
                             value={this.state.email}
+                            type="email" 
+                            color={this.state.emailError ? "red" : "primary"}
                         />
+                        <MessageError message={this.state.messageEmail}/>
                         <TextInput 
                             style={styles.input} 
                             secureTextEntry={true} label="Senha"
