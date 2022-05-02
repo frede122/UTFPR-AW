@@ -12,6 +12,7 @@ import Header from './src/components/Header';
 
 import Menu from './src/components/Menu';
 import CadCartao from './src/views/cartoes/CadCartao';
+import Cartoes from './src/views/cartoes/Cartoes';
 
  
  const Stack = createStackNavigator();
@@ -53,6 +54,8 @@ const optionHeader = {
 
         <Stack.Screen options={{headerShown: false}} name="Menu" component={Menu}/>
         
+
+      
         
       </Stack.Navigator>
 

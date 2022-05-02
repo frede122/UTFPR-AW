@@ -8,27 +8,29 @@ import { buttonColorDefault } from "../../assets/styles/Color";
 
 
 const CardObjetoCad = (props) => {
-    const { onPressButton } = props;
+    const { onPressButton = null, frente = null, verso= null} = props;
     return(
         <View style={ styles.container}>
 
             <View style={styles.containerCard}>
                 <View style={styles.frente}>
                     <Text style={styles.text}>Frente</Text>
-                    <TextInput style={styles.textInput}></TextInput>
+                    <TextInput style={styles.textInput} value={frente}></TextInput>
                 </View>
                 <View style={styles.verso}>
                     <Text style={styles.text}>Verso</Text>
-                    <TextInput style={styles.textInput}></TextInput>
+                    <TextInput style={styles.textInput} value={verso}></TextInput>
                 </View>
 
             </View>
-            <Button 
-                style={StyleDefault.buttonDefault, styles.button} 
-                onPress={onPressButton} 
-                title="CADASTRAR" 
-                color={buttonColorDefault}
-            />
+            {!frente && !verso ?
+                <Button 
+                    style={StyleDefault.buttonDefault, styles.button} 
+                    onPress={onPressButton} 
+                    title="CADASTRAR" 
+                    color={buttonColorDefault}
+                /> : null
+            }
         </View>
     )
 }

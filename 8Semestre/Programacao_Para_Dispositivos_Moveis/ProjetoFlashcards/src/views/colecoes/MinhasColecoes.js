@@ -14,7 +14,7 @@ return(
 
         <ScrollView style={styles.colecoes}>
 
-            <CardColecao onPress={() => navigation.navigate('CadCartao')} imagem={BolaImage} texto="Objetos" />
+            <CardColecao onPress={() => navigation.navigate('Cartoes')} imagem={BolaImage} texto="Objetos" />
             <CardColecao imagem={ColorsImage} texto="Cores" />
             <CardColecao imagem={UrsoImage} texto="Animais" />
             <CardColecao imagem={ArvoreImage} texto="Adjetivos" />
