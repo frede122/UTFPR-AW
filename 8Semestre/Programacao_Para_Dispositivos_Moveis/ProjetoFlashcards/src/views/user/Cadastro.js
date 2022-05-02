@@ -9,6 +9,8 @@ import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { StyleDefault } from "../../assets/styles/Style";
 import  Header  from '../../components/Header';
+import validarEmail from "../../utils/validarEmail";
+import MessageError from "../../components/utils/MessageError";
 
 
 
@@ -20,7 +22,11 @@ export default class Cadastro extends Component<Props> {
         this.state = {
             email: '',
             password: '',
-            passwordN: ''
+            passwordN: '',
+            messageEmail: null,
+            messagePasword: null,
+            emailError: false,
+            passwordError: false
         }
 
     }
@@ -47,10 +53,24 @@ export default class Cadastro extends Component<Props> {
 
 
     }
-    processCadastrar(){
+    
+    validadorDeCampos(email, password, passwordN){
+        password == passwordN ? 
+            this.setState({passwordError : false, messagePasword: null}) : 
+            this.setState({passwordError : true, messagePasword: 'Senha não confere'})
 
+        var em = validarEmail(email)
+        em ?  
+            this.setState({emailError : false, messageEmail: null}) : 
+            this.setState({emailError : true, messageEmail: 'E-mail inválido'})
+
+        return em && password == passwordN
+
+    }
+    processCadastrar(){
+        
         const { email, password, passwordN} = this.state;
-        if(password == passwordN){
+        if(this.validadorDeCampos(email, password, passwordN)){
             const auth = getAuth();
             createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -65,6 +85,8 @@ export default class Cadastro extends Component<Props> {
                 const errorMessage = error.message;
                 // ..
             });
+        }else{
+            alert('campos invalidos')
         }
 
     }
@@ -78,24 +100,29 @@ export default class Cadastro extends Component<Props> {
                         <TextInput 
                             style={styles.input} 
                             label="E-mail"  
-                            onChangeText={(value) => this.setState({email: value})}
+                            onChangeText={(value) => this.setState({email: value, emailError : false, messageEmail:null})}
                             value={this.state.email}
+                            color={this.state.emailError ? "red" : "primary"}
                         />
+                        <MessageError message={this.state.messageEmail}/>
                         <TextInput 
                             style={styles.input} 
                             secureTextEntry={true} 
                             label="Senha"
-                            onChangeText={(value) => this.setState({password: value})}
+                            onChangeText={(value) => this.setState({password: value, passwordError : false, messagePasword:null})}
                             value={this.state.password}
+                            color={this.state.passwordError ? "red" : "primary"}
                             
                         />
                         <TextInput 
                             style={styles.input} 
                             secureTextEntry={true} 
                             label="Repetir Senha"
-                            onChangeText={(value) => this.setState({passwordN: value})}
+                            onChangeText={(value) => this.setState({passwordN: value, passwordError : false, messagePasword:null})}
                             value={this.state.passwordN}  
+                            color={this.state.passwordError ? "red" : "primary"}
                         />
+                        <MessageError message={this.state.messagePasword}/>
                         <Button 
                             style={StyleDefault.buttonDefault} 
                             onPress={() => this.processCadastrar()}  
