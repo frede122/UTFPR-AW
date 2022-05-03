@@ -87,7 +87,6 @@ export default class Login extends Component<Props> {
                             style={styles.input} label="E-mail"
                             onChangeText={(value) => this.setState({email: value, emailError : false, messageEmail:null})}
                             value={this.state.email}
-                            type="email" 
                             color={this.state.emailError ? "red" : "primary"}
                         />
                         <MessageError message={this.state.messageEmail}/>

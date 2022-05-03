@@ -6,18 +6,9 @@ import FlashCardMini from "../../components/colecoes/FlashCardMini";
 import ButtonAdd from "../../components/utils/ButtonAdd";
 import { Stack, TextInput, Button} from "@react-native-material/core";
 
-const Cartoes = ({props, navigation}) => {
-    const data = [
-        {frente:"oi", verso:"hello"},
-        {frente:"gato", verso:"cat"},
-        {frente:"grande", verso:"big"},
-        {frente:"cachorro", verso:"dog"},
-        {frente:"amigo", verso:"friend"},
-        {frente:"azul", verso:"blue"},
-        {frente:"filho", verso:"son"},
-        {frente:"facil", verso:"easy"},
-        {frente:"carro", verso:"car"},
-        {frente:"banana", verso:"banana"} ]
+const Cartoes = ({props, navigation, route}) => {
+
+    const { cart } = route.params.item;
     return(
         <View  style={StyleDefault.container}>
             <View style={styles.button}>
@@ -29,12 +20,12 @@ const Cartoes = ({props, navigation}) => {
                         <TextInput style={styles.input} label="Filtro"  />
                 </Stack>
             </View>
-            <Button title="Jogar!"  onPress={() => navigation.navigate('Jogar', {data})} style={{color:'white'}} color="#57966A"/>
+            <Button title="Jogar!"  onPress={() => navigation.navigate('Jogar', {data : cart})} style={{color:'white'}} color="#57966A"/>
 
 
             <FlatList 
                 style={styles.colecoes}
-                data={data}
+                data={cart}
                 renderItem={({item}) =>(
                         <FlashCardMini frente={item.frente} verso={item.verso}  />
                     )}

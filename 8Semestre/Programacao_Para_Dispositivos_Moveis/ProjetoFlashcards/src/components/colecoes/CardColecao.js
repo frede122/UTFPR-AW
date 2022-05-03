@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const CardColecao = (props) => {
-    const {onPress, imagem, texto, } = props;
+    const {onPress, itens, imagem, texto, } = props;
     return(
         <TouchableOpacity onPress={onPress}>
 
