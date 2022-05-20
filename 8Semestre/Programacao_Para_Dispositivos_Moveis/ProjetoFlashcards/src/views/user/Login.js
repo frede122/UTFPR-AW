@@ -13,6 +13,10 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
 
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 type Props = {};
 export default class Login extends Component<Props> {
     constructor(props){
@@ -39,14 +43,14 @@ export default class Login extends Component<Props> {
     componentDidMount(){
 
         const firebaseConfig = {
-        apiKey: "AIzaSyCfMMK1-Ki03ZFsoOk8DFA2RD5_UvVRNEo",
-        authDomain: "mindbooster-bbf12.firebaseapp.com",
-        projectId: "mindbooster-bbf12",
-        storageBucket: "mindbooster-bbf12.appspot.com",
-        messagingSenderId: "712614382211",
-        appId: "1:712614382211:web:28f36235fd7804568169b6",
-        measurementId: "G-53JYNBXKQG"
-        };
+            apiKey: "AIzaSyBSlCKhEjsQutjDy-7h4exY_50UuYq0GR4",
+            authDomain: "mind-ddef5.firebaseapp.com",
+            projectId: "mind-ddef5",
+            storageBucket: "mind-ddef5.appspot.com",
+            messagingSenderId: "556067998202",
+            appId: "1:556067998202:web:851cc14016473c7b193c43",
+            measurementId: "G-JKHP5J187G"
+          };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
@@ -79,8 +83,12 @@ export default class Login extends Component<Props> {
     render(){
         return(
             <View style={styles.container}>
+                <Icon name="rocket" size={30} color="#4F8EF7" />
                 <Image style={styles.img} source={Mind} />
                 <Text style={styles.textHeader}>Mind Booster</Text>
+                {/* <FontAwesomeIcon icon="fa-solid faMugSaucer" /> */}
+                {/* <FontAwesomeIcon icon={faMugSaucer} /> */}
+                
                 <View style={styles.inputContainer}>
                     <Stack   spacing={2} style={{ margin: 16 }}>
                         <TextInput 

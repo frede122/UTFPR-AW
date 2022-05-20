@@ -1,35 +1,55 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-
-const FlashCardMini = (props) => {
+const FlashCardMini = (props, navigation) => {
     const {onPress,frente, verso } = props;
     return(
-        <TouchableOpacity onPress={onPress}>
+
 
             <View style={styles.container}>
-                <View style={styles.card}>
+                <View onPress={onPress} style={styles.card}>
                     <Text style={styles.header}>Frente</Text>
                     <Text style={styles.text}>{frente}</Text>
 
                 </View>
-                <View style={styles.card}>
+                <View onPress={onPress} style={styles.card}>
                     <Text style={styles.header}>Verso</Text>
                     <Text style={styles.text}>{verso}</Text>
                 </View>
                 <View style={styles.option}>
-                    <Text >Editar</Text>
-                    <Text >Excluir</Text>
+                    <TouchableOpacity >
+                        <Icon style={styles.icon} name="rocket" size={20} color="#4472C4"></Icon>
+                        {/* <Icon name="rocket" size={30} color="#4F8EF7" /> */}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={()=>{
+                        Alert.alert(
+                            "",
+                            "Você tem certeza que deseja excluir essa coleção?",
+                            [{
+                                text: 'Não',
+                                    onPress: () => {}
+                                },{
+                                text: 'Sim',
+                                onPress: () =>{}
+                            }]
+                        )
+                    }}>
+                        <Icon style={styles.icon} name="trash" size={20} color="red"></Icon>
+                    </TouchableOpacity>
                 </View>
             </View>
 
-        </TouchableOpacity>
+
 
     );
 }
 
 const styles=StyleSheet.create({
+    icon:{
+        margin: 6
+    },
     container: {
         borderRadius: 13,
         width: 330,
