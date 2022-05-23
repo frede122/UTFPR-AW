@@ -19,6 +19,9 @@ Imagens do projeto desenvolvido
 Imagem de dois clientes, um enviando mensagem ***Teste*** e outro ***fim***, o qual altera o *status* da outra maquina para *desconectado*
 
 ![Imagem do enuciado](README/img/cliente.png)
-Servidor aguardando requisições, com dois clientes, um conectado e outro desconectado
+
+
 ### Servidor
+Servidor aguardando requisições, com dois clientes, um *conectado* e outro *desconectado*.
+
 ![Imagem do enuciado](README/img/servidor.png)
