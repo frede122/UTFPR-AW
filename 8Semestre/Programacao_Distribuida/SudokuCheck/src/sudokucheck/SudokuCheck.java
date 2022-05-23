@@ -21,10 +21,7 @@ public class SudokuCheck {
     public static void main(String[] args) {
         sudoku su = new sudoku();
         su.printTabela();
-        System.out.println("\n");
-//        System.out.println("é valido : " + su.lineIsValid(0, 0, 9));
-//        System.out.println("coluna é valido : " + su.columnIsValid(0, 0, 9));
-//        
+        System.out.println("\n");       
         Thread t1 = new Thread(new Runnable() {
             @Override
             public void run() {
