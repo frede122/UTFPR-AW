@@ -10,8 +10,10 @@ import validarEmail from "../../utils/validarEmail";
 import MessageError from "../../components/utils/MessageError";
 
 import { initializeApp } from "firebase/app";
+import app from '../../config/Firebase';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
+// import { }
 
 // import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 // import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
@@ -42,21 +44,8 @@ export default class Login extends Component<Props> {
 
     componentDidMount(){
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBSlCKhEjsQutjDy-7h4exY_50UuYq0GR4",
-            authDomain: "mind-ddef5.firebaseapp.com",
-            projectId: "mind-ddef5",
-            storageBucket: "mind-ddef5.appspot.com",
-            messagingSenderId: "556067998202",
-            appId: "1:556067998202:web:851cc14016473c7b193c43",
-            measurementId: "G-JKHP5J187G"
-          };
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-
-
     }
+    
     processLogin(){
 
         const { email, password} = this.state;

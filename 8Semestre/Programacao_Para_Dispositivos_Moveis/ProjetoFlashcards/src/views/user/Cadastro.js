@@ -4,6 +4,7 @@ import React, {Component} from "react";
 import { Stack, TextInput, Button, IconButton } from "@react-native-material/core";
 import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 
+import app from '../../config/Firebase';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -38,18 +39,18 @@ export default class Cadastro extends Component<Props> {
     }
     componentDidMount(){
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyBSlCKhEjsQutjDy-7h4exY_50UuYq0GR4",
-            authDomain: "mind-ddef5.firebaseapp.com",
-            projectId: "mind-ddef5",
-            storageBucket: "mind-ddef5.appspot.com",
-            messagingSenderId: "556067998202",
-            appId: "1:556067998202:web:851cc14016473c7b193c43",
-            measurementId: "G-JKHP5J187G"
-          };
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyBSlCKhEjsQutjDy-7h4exY_50UuYq0GR4",
+        //     authDomain: "mind-ddef5.firebaseapp.com",
+        //     projectId: "mind-ddef5",
+        //     storageBucket: "mind-ddef5.appspot.com",
+        //     messagingSenderId: "556067998202",
+        //     appId: "1:556067998202:web:851cc14016473c7b193c43",
+        //     measurementId: "G-JKHP5J187G"
+        //   };
 
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
+        // // Initialize Firebase
+        // const app = initializeApp(firebaseConfig);
 
 
     }

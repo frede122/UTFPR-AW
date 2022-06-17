@@ -1,32 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { ScrollView, TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Button} from "@react-native-material/core";
 import { StyleDefault } from "../../assets/styles/Style";
 import { buttonColorDefault } from "../../assets/styles/Color";
+import { addDoc, collection, initializeFirestore } from 'firebase/firestore';
+import app from '../../config/Firebase';
 
 
 
 const FlashCard = (props) => {
-    const { onPressButton = null, frente = null, verso= null} = props;
+    const { onPressButton = null, frenteP = null, versoP= null} = props;
+    
+    const [frente, setFrente] = useState(frenteP);
+    const [verso, setVerso] = useState(versoP);
+
+    const db = initializeFirestore(app, {experimentalForceLongPolling: true});
+    const flashcardCollection  = collection(db, "flashcard");
+
+    const addFlashCard = ()=>{
+        const docFlashCard = {
+            frente: frente,
+            verso: verso
+        }
+
+        addDoc(flashcardCollection, docFlashCard).then((docRef)=>{
+            console.log('documento inserido com sucesso' + docRef.id);
+        }).catch( (erro) =>{
+            console.log("erro " + erro);
+        })
+    }
+
     return(
         <View style={ styles.container}>
 
             <View style={styles.containerCard}>
                 <View style={styles.frente}>
                     <Text style={styles.text}>Frente</Text>
-                    <TextInput style={styles.textInput} value={frente}></TextInput>
+                    <TextInput onChangeText={setFrente} style={styles.textInput} value={frente}></TextInput>
                 </View>
                 <View style={styles.verso}>
                     <Text style={styles.text}>Verso</Text>
-                    <TextInput style={styles.textInput} value={verso}></TextInput>
+                    <TextInput onChangeText={setVerso} style={styles.textInput} value={verso}></TextInput>
                 </View>
 
             </View>
-            {!frente && !verso ?
+            {!frenteP && !versoP ?
                 <Button 
                     style={StyleDefault.buttonDefault, styles.button} 
-                    onPress={onPressButton} 
+                    onPress={()=>addFlashCard()} 
                     title="CADASTRAR" 
                     color={buttonColorDefault}
                 /> : null
