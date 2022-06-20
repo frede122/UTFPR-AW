@@ -4,13 +4,13 @@ import { ScrollView, TextInput, TouchableOpacity } from "react-native-gesture-ha
 import { Button} from "@react-native-material/core";
 import { StyleDefault } from "../../assets/styles/Style";
 import { buttonColorDefault } from "../../assets/styles/Color";
-import { addDoc, collection, initializeFirestore } from 'firebase/firestore';
-import app from '../../config/Firebase';
+import { addDoc, collection, initializeFirestore, updateDoc, doc } from 'firebase/firestore';
+import {app} from '../../config/Firebase';
 
 
 
 const FlashCard = (props) => {
-    const { onPressButton = null, frenteP = null, versoP= null} = props;
+    const { onPressButton = null, frenteP = null, versoP= null, id, myId} = props;
     
     const [frente, setFrente] = useState(frenteP);
     const [verso, setVerso] = useState(versoP);
@@ -21,7 +21,8 @@ const FlashCard = (props) => {
     const addFlashCard = ()=>{
         const docFlashCard = {
             frente: frente,
-            verso: verso
+            verso: verso,
+            colecao: id
         }
 
         addDoc(flashcardCollection, docFlashCard).then((docRef)=>{
@@ -29,6 +30,14 @@ const FlashCard = (props) => {
         }).catch( (erro) =>{
             console.log("erro " + erro);
         })
+    }
+    const updateFlashCard = ()=>{
+        const docFlashCard = {
+            frente: frente,
+            verso: verso,
+            colecao: id
+        }
+        updateDoc(doc(db, "flashcard", myId), docFlashCard)
     }
 
     return(
@@ -40,7 +49,7 @@ const FlashCard = (props) => {
                     <TextInput onChangeText={setFrente} style={styles.textInput} value={frente}></TextInput>
                 </View>
                 <View style={styles.verso}>
-                    <Text style={styles.text}>Verso</Text>
+                    <Text style={styles.text}>Verso </Text>
                     <TextInput onChangeText={setVerso} style={styles.textInput} value={verso}></TextInput>
                 </View>
 
@@ -50,6 +59,15 @@ const FlashCard = (props) => {
                     style={StyleDefault.buttonDefault, styles.button} 
                     onPress={()=>addFlashCard()} 
                     title="CADASTRAR" 
+                    color={buttonColorDefault}
+                /> : null
+            }
+            {myId ?
+            
+                <Button 
+                    style={StyleDefault.buttonDefault, styles.button} 
+                    onPress={()=>updateFlashCard()} 
+                    title="ATUALIZAR" 
                     color={buttonColorDefault}
                 /> : null
             }

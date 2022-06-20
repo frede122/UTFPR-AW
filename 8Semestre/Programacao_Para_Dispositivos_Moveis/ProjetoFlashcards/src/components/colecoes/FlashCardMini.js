@@ -2,9 +2,17 @@ import React from "react";
 import { View, StyleSheet, Text, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc, doc, } from "firebase/firestore";
+import {app, storage} from '../../config/Firebase';
 
 const FlashCardMini = (props, navigation) => {
-    const {onPress,frente, verso } = props;
+    const {onPress,frente, verso, id } = props;
+
+    const db = initializeFirestore(app, {experimentalForceLongPolling: true});
+    const dbCollection  = collection(db, "flashcard");
+    const deleteCartao = (id) =>{
+        deleteDoc(doc(db, "flashcard", id))
+    }
     return(
 
 
@@ -19,9 +27,10 @@ const FlashCardMini = (props, navigation) => {
                     <Text style={styles.text}>{verso}</Text>
                 </View>
                 <View style={styles.option}>
-                    <TouchableOpacity >
-                        <Icon style={styles.icon} name="rocket" size={20} color="#4472C4"></Icon>
-                        {/* <Icon name="rocket" size={30} color="#4F8EF7" /> */}
+                    <TouchableOpacity  onPress={() => navigation.navigate('CadCartao')
+
+                    }>
+                        <Icon style={styles.icon} name="pencil" size={20} color="#4472C4"></Icon>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>{
                         Alert.alert(
@@ -32,7 +41,7 @@ const FlashCardMini = (props, navigation) => {
                                     onPress: () => {}
                                 },{
                                 text: 'Sim',
-                                onPress: () =>{}
+                                onPress: () => {deleteCartao(id)}
                             }]
                         )
                     }}>

@@ -1,27 +1,51 @@
 import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { View, Text, StyleSheet, Image,  Alert } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc, doc, } from "firebase/firestore";
+import {app, storage} from '../../config/Firebase';
 
 const CardColecao = (props) => {
-    const {onPress, itens, imagem, texto, navigation} = props;
+    const {onPress, itens, imagem, texto, navigation, id} = props    
+    
+    const db = initializeFirestore(app, {experimentalForceLongPolling: true});
+    const dbCollection  = collection(db, "flashcard");
+    const deleteColecao = (id) =>{
+        deleteDoc(doc(db, "colecao", id))
+    }
+
+    
     return(
-        <TouchableOpacity onPress={onPress}>
+        
 
             <View style={styles.card}>
-                <Image style={styles.image} source={imagem} />
-                <Text style={styles.text}>{texto}</Text>
+                <TouchableOpacity style={styles.card} onPress={onPress}>
+                    <Image style={styles.image} source={{uri : imagem}} />
+                    <Text style={styles.text}>{texto} </Text>
+                </TouchableOpacity>
                 <View style={styles.iconContainer}>
                     <View style={styles.icon} onPress={() => navigation.navigate('NovaColecao')}>
                         <Icon name="pencil" size={20} color="#4472C4"></Icon>
                     </View>
-                    <View onPress={() => navigation.navigate('NovaColecao')} style={styles.icon}>
+                    <TouchableOpacity onPress={()=>{
+                        Alert.alert(
+                            "",
+                            "Você tem certeza que deseja excluir essa coleção?",
+                            [{
+                                text: 'Não',
+                                    onPress: () => {}
+                                },{
+                                text: 'Sim',
+                                onPress: () => {deleteColecao(id)}
+                            }]
+                        )
+                    }}>
                         <Icon name="trash" size={20} color="red"></Icon>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
 
-        </TouchableOpacity>
+        
     );
 }
 const styles=StyleSheet.create({
@@ -47,6 +71,8 @@ const styles=StyleSheet.create({
         
     },
     image:{
+        width:70,
+        height:70,
         margin: 15
     },
     text: {

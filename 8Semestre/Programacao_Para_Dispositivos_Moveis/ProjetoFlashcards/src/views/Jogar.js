@@ -22,7 +22,7 @@ const Jogar= ({props, route, navigation}) => {
                 <View>
                     {hide ?
                         <JogarFrente frente={data[position].frente} />:
-                        <FlashCard frente={data[position].frente} verso={data[position].verso}/>
+                        <FlashCard frenteP={data[position].frente} versoP={data[position].verso}/>
                     }
                 </View>
                 {

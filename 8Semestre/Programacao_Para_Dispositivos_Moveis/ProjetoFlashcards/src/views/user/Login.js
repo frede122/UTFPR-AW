@@ -13,10 +13,7 @@ import { initializeApp } from "firebase/app";
 import app from '../../config/Firebase';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
-// import { }
 
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faMugSaucer } from '@fortawesome/free-solid-svg-icons/faMugSaucer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 type Props = {};
@@ -72,12 +69,8 @@ export default class Login extends Component<Props> {
     render(){
         return(
             <View style={styles.container}>
-                <Icon name="rocket" size={30} color="#4F8EF7" />
                 <Image style={styles.img} source={Mind} />
                 <Text style={styles.textHeader}>Mind Booster</Text>
-                {/* <FontAwesomeIcon icon="fa-solid faMugSaucer" /> */}
-                {/* <FontAwesomeIcon icon={faMugSaucer} /> */}
-                
                 <View style={styles.inputContainer}>
                     <Stack   spacing={2} style={{ margin: 16 }}>
                         <TextInput 

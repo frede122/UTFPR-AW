@@ -99,7 +99,7 @@ function CadastrarCardapio({match}){
 
     function cadastrar(){
         setCarregando(1);
-
+        console.log("imagem nova " + imagemNova)
         storage.ref(`imagens/cardapios/${imagemNova.name}`).put(imagemNova).then( () => {
            var b =[];
             textAlimentos.map(item => {
