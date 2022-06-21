@@ -9,11 +9,12 @@ import {StyleDefault} from '../../assets/styles/Style'
 const CadCartao = ({route, navigation}) => {
     const  text  = route.params ? route.params.text : 'ss' ;    
     const  id  = route.params ? route.params.id : '' ;    
+    const { myId, frente = null, verso= null } = route?.params;
     return(
 
             <View  style={StyleDefault.container}>
                 <Text style={styles.text} >os dados da frente e do verso do flashcard</Text>
-                <FlashCard id={id} onPressButton={() => {navigation.goBack()}} />
+                <FlashCard id={id} frenteP={frente} versoP={verso} myId={myId} onPressButton={() => {navigation.goBack()}} />
                 <Button 
                     style={StyleDefault.buttonDefault, styles.button} 
                     onPress={() => {navigation.goBack()}} 

@@ -66,7 +66,7 @@ const Cartoes = ({props, navigation, route}) => {
                 style={styles.colecoes}
                 data={data}
                 renderItem={({item}) =>(
-                        <FlashCardMini frente={item.frente} verso={item.verso} id={item.id} />
+                        <FlashCardMini frente={item.frente} verso={item.verso} id={item.id} navigation={navigation}/>
                     )}
                 keyExtractor={ (item, index) => item.frente+index}
             />

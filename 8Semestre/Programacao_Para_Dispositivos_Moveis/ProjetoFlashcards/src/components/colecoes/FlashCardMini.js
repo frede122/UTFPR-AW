@@ -5,8 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc, doc, } from "firebase/firestore";
 import {app, storage} from '../../config/Firebase';
 
-const FlashCardMini = (props, navigation) => {
-    const {onPress,frente, verso, id } = props;
+const FlashCardMini = (props) => {
+    const {onPress,frente, verso, id, navigation } = props;
 
     const db = initializeFirestore(app, {experimentalForceLongPolling: true});
     const dbCollection  = collection(db, "flashcard");
@@ -27,7 +27,7 @@ const FlashCardMini = (props, navigation) => {
                     <Text style={styles.text}>{verso}</Text>
                 </View>
                 <View style={styles.option}>
-                    <TouchableOpacity  onPress={() => navigation.navigate('CadCartao')
+                    <TouchableOpacity  onPress={() => navigation.navigate('CadCartao', {frente: frente, verso:verso, myId: id})
 
                     }>
                         <Icon style={styles.icon} name="pencil" size={20} color="#4472C4"></Icon>

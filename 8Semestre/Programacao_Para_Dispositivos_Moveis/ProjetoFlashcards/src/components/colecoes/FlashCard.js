@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { ScrollView, TextInput, TouchableOpacity } from "react-native-gesture-handler";
 import { Button} from "@react-native-material/core";
@@ -9,11 +9,14 @@ import {app} from '../../config/Firebase';
 
 
 
-const FlashCard = (props) => {
+const FlashCard = (props, route) => {
     const { onPressButton = null, frenteP = null, versoP= null, id, myId} = props;
+    // const { onPressButton = null, frenteP = null, versoP= null, id, myId} = props;
+    // const { myId, frenteR = null, versoR= null } = route?.params;
     
-    const [frente, setFrente] = useState(frenteP);
-    const [verso, setVerso] = useState(versoP);
+    const [frente, setFrente] = useState(frenteP ? frenteP: '');
+    const [verso, setVerso] = useState(versoP ? versoP :  '');
+
 
     const db = initializeFirestore(app, {experimentalForceLongPolling: true});
     const flashcardCollection  = collection(db, "flashcard");
@@ -34,15 +37,19 @@ const FlashCard = (props) => {
     const updateFlashCard = ()=>{
         const docFlashCard = {
             frente: frente,
-            verso: verso,
-            colecao: id
+            verso: verso
         }
         updateDoc(doc(db, "flashcard", myId), docFlashCard)
     }
 
+    useEffect(() => {
+        setFrente(frenteP ? frenteP:'');
+        setVerso(versoP ? versoP :'');
+    }, [frenteP, versoP]);
+
     return(
         <View style={ styles.container}>
-
+            <Text style={styles.text}>{route ? "s": 'n'}</Text>
             <View style={styles.containerCard}>
                 <View style={styles.frente}>
                     <Text style={styles.text}>Frente</Text>
