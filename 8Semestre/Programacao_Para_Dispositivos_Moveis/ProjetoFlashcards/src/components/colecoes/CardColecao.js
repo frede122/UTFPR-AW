@@ -24,7 +24,6 @@ const CardColecao = (props) => {
                     <Text style={styles.text}>{texto} </Text>
                 </TouchableOpacity>
                 <View style={styles.iconContainer}>
-                    {/* <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate('NovaColecao')}> */}
                     <TouchableOpacity style={styles.icon} onPress={()=>{ navigation.navigate('NovaColecao', {colecao:{imagem, texto, descricao, id}}) }}>
                         <Icon name="pencil" size={20} color="#4472C4"></Icon>
                     </TouchableOpacity>

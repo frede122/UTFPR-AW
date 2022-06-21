@@ -2,8 +2,8 @@ import React from "react";
 import { View, StyleSheet, Text, Alert } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc, doc, } from "firebase/firestore";
-import {app, storage} from '../../config/Firebase';
+import { collection, initializeFirestore, onSnapshot, where, deleteDoc, doc, } from "firebase/firestore";
+import {app} from '../../config/Firebase';
 
 const FlashCardMini = (props) => {
     const {onPress,frente, verso, id, navigation } = props;

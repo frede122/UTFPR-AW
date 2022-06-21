@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { View } from 'react-native';
 import MinhasColecoes from '../views/colecoes/MinhasColecoes';
 import Login from '../views/user/Login';
 import { backgroundUser } from '../assets/styles/Color';

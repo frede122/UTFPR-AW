@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet} from "react-native";
-import { ScrollView, FlatList } from "react-native-gesture-handler";
+import { View, StyleSheet} from "react-native";
+import { FlatList } from "react-native-gesture-handler";
 import { StyleDefault } from "../../assets/styles/Style";
 import FlashCardMini from "../../components/colecoes/FlashCardMini";
 import ButtonAdd from "../../components/utils/ButtonAdd";
 import { Stack, TextInput, Button} from "@react-native-material/core";
-import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc } from "firebase/firestore";
-import {app, storage} from '../../config/Firebase';
+import { query, collection, initializeFirestore, onSnapshot, where } from "firebase/firestore";
+import {app} from '../../config/Firebase';
 
 const Cartoes = ({props, navigation, route}) => {
 
@@ -18,7 +18,7 @@ const Cartoes = ({props, navigation, route}) => {
     const dbCollection  = collection(db, "flashcard");
 
     useEffect( () => {
-        const q = query(dbCollection);
+        const q = query(dbCollection, where("colecao", "==", id));
 
         const unsubscribe = onSnapshot(q, (snapshot)=>{
             const cartoes = [];
@@ -31,7 +31,7 @@ const Cartoes = ({props, navigation, route}) => {
             setFlashCards(cartoes);
             setDataF(cartoes)
         })
-    },[])
+    },[id])
 
     const filtro = (text) => {
         if(text == ""){

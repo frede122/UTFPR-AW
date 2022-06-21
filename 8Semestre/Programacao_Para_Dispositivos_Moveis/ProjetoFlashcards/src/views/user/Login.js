@@ -1,20 +1,16 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React, {Component} from "react";
 
-import { Stack, TextInput, Button,  IconButton } from "@react-native-material/core";
+import { Stack, TextInput, Button } from "@react-native-material/core";
 
 import Mind from '../../assets/images/mind.png'
 import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 import { StyleDefault } from "../../assets/styles/Style";
 import validarEmail from "../../utils/validarEmail";
 import MessageError from "../../components/utils/MessageError";
-
-import { initializeApp } from "firebase/app";
 import app from '../../config/Firebase';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { getAnalytics } from "firebase/analytics";
 
-import Icon from 'react-native-vector-icons/FontAwesome';
 
 type Props = {};
 export default class Login extends Component<Props> {

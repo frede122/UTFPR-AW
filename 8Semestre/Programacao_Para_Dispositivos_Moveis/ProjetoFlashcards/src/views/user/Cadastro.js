@@ -1,15 +1,12 @@
 import { View, Text, StyleSheet } from "react-native";
 import React, {Component} from "react";
 
-import { Stack, TextInput, Button, IconButton } from "@react-native-material/core";
+import { Stack, TextInput, Button } from "@react-native-material/core";
 import { backgroundUser, buttonColorDefault } from "../../assets/styles/Color";
 
-import app from '../../config/Firebase';
-import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 import { StyleDefault } from "../../assets/styles/Style";
-import  Header  from '../../components/Header';
 import validarEmail from "../../utils/validarEmail";
 import MessageError from "../../components/utils/MessageError";
 

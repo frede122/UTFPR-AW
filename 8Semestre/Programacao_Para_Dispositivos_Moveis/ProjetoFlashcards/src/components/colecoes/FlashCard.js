@@ -10,10 +10,7 @@ import {app} from '../../config/Firebase';
 
 
 const FlashCard = (props, route) => {
-    const { onPressButton = null, frenteP = null, versoP= null, id, myId} = props;
-    // const { onPressButton = null, frenteP = null, versoP= null, id, myId} = props;
-    // const { myId, frenteR = null, versoR= null } = route?.params;
-    
+    const { navigation = null, frenteP = null, versoP= null, id, myId} = props;
     const [frente, setFrente] = useState(frenteP ? frenteP: '');
     const [verso, setVerso] = useState(versoP ? versoP :  '');
 
@@ -30,6 +27,7 @@ const FlashCard = (props, route) => {
 
         addDoc(flashcardCollection, docFlashCard).then((docRef)=>{
             console.log('documento inserido com sucesso' + docRef.id);
+            navigation.navigate('MinhaColecoes')
         }).catch( (erro) =>{
             console.log("erro " + erro);
         })
@@ -39,7 +37,9 @@ const FlashCard = (props, route) => {
             frente: frente,
             verso: verso
         }
-        updateDoc(doc(db, "flashcard", myId), docFlashCard)
+        updateDoc(doc(db, "flashcard", myId), docFlashCard).then(()=>{
+            navigation.navigate('MinhaColecoes')
+        })
     }
 
     useEffect(() => {
@@ -49,7 +49,6 @@ const FlashCard = (props, route) => {
 
     return(
         <View style={ styles.container}>
-            <Text style={styles.text}>{route ? "s": 'n'}</Text>
             <View style={styles.containerCard}>
                 <View style={styles.frente}>
                     <Text style={styles.text}>Frente</Text>
