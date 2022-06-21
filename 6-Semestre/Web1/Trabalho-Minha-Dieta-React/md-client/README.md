@@ -1,75 +1,74 @@
-# WEB 1 - 6 semestre.
-## Trabalhos da Disciplina de Web 1
-### Minha Dieta ( React App ) :banana: :apple: :grapes: :tangerine: :rice: :egg: :meat_on_bone:
+# Minha Dieta ( React App )  :apple: :rice:  :meat_on_bone:
+Aplicativo Web para criação de cardapios para dieta de pacientes.
+
+## Especificação do Projeto
+Estudo de caso, aplicativo Web implementado com React-JS para controle de dieta, fazendo a persistência de dados utilizando Firebase
+
+### Critérios
+* [x] Utilizar Firebase como persistência.
+* [x] Utilizar REDUX.
+* [x] Criar tela de Login.
+* [x] Criar cadastrado de usuários.
+* [x] Criar tela para redefinir senha.
+* [x] Criar cadastro de itens.
+* [x] Permitir alteração e exclusão de itens.
+
+## Screenshots
+### Login
+![Imagem do Login](README/Screenshot_1.PNG)
+
+### Tela Inicial Paciente
+![Imagem do Tela Inicial Paciente](README/Screenshot_2.PNG)
+![Imagem do Tela Inicial Paciente](README/Screenshot_3.PNG)
+
+### Tela Cadastro Paciente
+<img src="README/Screenshot_4.PNG" alt="drawing" width="350"/> 
+<img src="README/Screenshot_5.PNG" alt="drawing" width="600"/> 
+
+### Telas Cadastro de Alimentos e Cardapios
+<img src="README/Screenshot_6.PNG" alt="drawing" width="550"/> 
+<img src="README/Screenshot_7.PNG" alt="drawing" width="400"/> 
+
+## Dependências
+* NodeJS
+* npm
+
+## Dependências JS
+
+| Dependência | Versão
+|---| ---|
+| react | ^17.0.2 |
+| react-dom | ^7.2.4 |
+| eact-router-dom | ^5.2.0 |
+| react-scripts | 4.0.3 |
+| redux | ^4.1.0 |
+| redux-persist | ^6.0.0 |
+| firebase | ^8.5.0 |
 
 
-# Getting Started with Create React App
+### Instalando Dependências JS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+```
+npm install
+```
 
-## Available Scripts
+## Executando a Aplicação
 
-In the project directory, you can run:
+Para executar o APP Web em modo desenvolvedor, use o comando:
 
-### `npm start`
+```
+npm start
+```
+Abra [http://localhost:3000](http://localhost:3000) para visualizar no navegador.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Criando Build da Aplicação
+Para criar um `build` do APP Web, use o comando:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+npm run build
+```
+Esse comando compila o aplicativo para produção, disponibilizando-o na pasta `build`.\
+Com a compilação o tamanho da aplicação é reduzida e os nomes dos arquivos incluem os `hashes`.\
+Após compilado, estará pronto para ser feito o `Deploy` da aplicação!.\
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Veja a seção sobre [deployment](https://facebook.github.io/create-react-app/docs/deployment) para mais informações.
