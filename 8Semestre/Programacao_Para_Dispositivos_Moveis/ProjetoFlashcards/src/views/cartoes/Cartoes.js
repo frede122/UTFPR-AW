@@ -36,7 +36,6 @@ const Cartoes = ({props, navigation, route}) => {
     const filtro = (text) => {
         if(text == ""){
             setDataF(flashcards)
-            alert(id)
         }
         const updatedData = flashcards.filter((item) => {
           const item_data_frente= `${item.frente.toUpperCase()})`;

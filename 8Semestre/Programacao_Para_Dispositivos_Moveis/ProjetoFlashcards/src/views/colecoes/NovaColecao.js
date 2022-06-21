@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Image, Alert } from "react-native";
 import {launchCamera, launchImageLibrary, ImageLibraryOptions} from 'react-native-image-picker';
 import ImagePicker from 'react-native-image-crop-picker';
 
-import { addDoc, collection, initializeFirestore  } from 'firebase/firestore';
+import { addDoc, collection, initializeFirestore, updateDoc, doc  } from 'firebase/firestore';
 import { ref, uploadString, uploadBytesResumable,uploadBytes, getDownloadURL} from "firebase/storage";
 
 import {app, storage} from '../../config/Firebase';
@@ -19,12 +19,14 @@ import { TextInput as TextI } from "react-native-gesture-handler";
 
 const NovaColecao = ({route, navigation}) => {
     const  text  = route.params ? route.params.text : 'ss' ; 
+    const dataCollection = route.params ? route.params.colecao : '';
+
     const [imagemSelect, setImgSelect] = useState('');
     const [data, setData] = useState('');
-    const [colecao, setColecao] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const [imagem, setImagem] = useState('');
-
+    const [colecao, setColecao] = useState(dataCollection.texto ? dataCollection.texto:'');
+    const [descricao, setDescricao] = useState(dataCollection.descricao ? dataCollection.descricao :'');
+    const [imagem, setImagem] = useState(dataCollection.imagem ? dataCollection.imagem :'');
+    const [id, setId] = useState(dataCollection.id ? dataCollection.id : null);
 
 
     const reader = new FileReader(); 
@@ -34,9 +36,12 @@ const NovaColecao = ({route, navigation}) => {
     const dbCollection  = collection(db, "colecao");
 
 
-    useEffect( () => {
-        
-    })
+    useEffect(() => {
+        setColecao(dataCollection.texto ? dataCollection.texto:'');
+        setDescricao(dataCollection.descricao ? dataCollection.descricao :'');
+        setImagem(dataCollection.imagem ? dataCollection.imagem :'');
+        setId(dataCollection.id ? dataCollection.id : null);
+    }, [dataCollection]);
 
     const handleImg = () => {
         Alert.alert("Selecione", "Selecione da onde você quer a imagem", [
@@ -116,6 +121,15 @@ const NovaColecao = ({route, navigation}) => {
         })
     }
 
+    const atualizarCollection = ()=>{
+        const docCollection = {
+            colecao: colecao,
+            descricao: descricao,
+            imagem: imagem
+        }
+        updateDoc(doc(db, "colecao", id), docCollection)
+    }
+
     const uploadImgCollection = () =>{
 
     }
@@ -157,11 +171,11 @@ const NovaColecao = ({route, navigation}) => {
                 <View>
 
                     <Stack  spacing={2} style={{ margin: 16 }}>
-                        <TextInput onChangeText={setColecao} style={styles.inputColec} label="Coleção"  />
-                        <TextInput onChangeText={setDescricao} style={styles.inputDesc}  label="Descrição"  />
+                        <TextInput onChangeText={setColecao} style={styles.inputColec} value={colecao} label="Coleção"  />
+                        <TextInput onChangeText={setDescricao} style={styles.inputDesc} value={descricao} label="Descrição"  />
                         <View style={styles.inputImage}>
                             <Text>Imagen</Text>
-                            <TextI onChangeText={setImagem} style={styles.inputDesc}  label="Imagem"  />
+                            <TextI onChangeText={setImagem} style={styles.inputDesc} value={imagem}  label="Imagem"  />
                             
                             
                             <TouchableOpacity onPress={()=>{}}>
@@ -170,13 +184,22 @@ const NovaColecao = ({route, navigation}) => {
                         </View>
                        
                         
-
-                        <Button 
+                        {id?
+                            <Button 
+                            onPress={()=>atualizarCollection()}
+                            style={StyleDefault.buttonDefault, styles.button} 
+                            title="ATUALIZAR" 
+                            color={buttonColorDefault}
+                            />
+                            :
+                            <Button 
                             onPress={()=>addCollection()}
                             style={StyleDefault.buttonDefault, styles.button} 
                             title="CADASTRAR" 
                             color={buttonColorDefault}
-                        />
+                            />
+                        }
+                        
                     </Stack>
                 </View>
 

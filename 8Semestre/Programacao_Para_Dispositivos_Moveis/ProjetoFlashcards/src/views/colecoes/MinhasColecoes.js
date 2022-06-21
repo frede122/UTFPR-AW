@@ -110,7 +110,11 @@ return(
                 renderItem={({item}) =>(
                         <CardColecao 
                         onPress={() => navigation.navigate('Cartoes', {item})} 
-                        imagem={item.imagem} texto={item.colecao} id={item.id} />
+                        imagem={item.imagem} 
+                        texto={item.colecao} 
+                        id={item.id} 
+                        descricao={item.descricao}
+                        navigation={navigation} />
                     )}
                 keyExtractor={ (item, index) => item.texto+index}
         />

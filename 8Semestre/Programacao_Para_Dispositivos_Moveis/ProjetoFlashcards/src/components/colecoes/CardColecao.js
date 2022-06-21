@@ -6,7 +6,7 @@ import { query, collection, initializeFirestore, onSnapshot, where, deleteDoc, d
 import {app, storage} from '../../config/Firebase';
 
 const CardColecao = (props) => {
-    const {onPress, itens, imagem, texto, navigation, id} = props    
+    const {onPress, itens, imagem, texto, descricao, navigation, id} = props    
     
     const db = initializeFirestore(app, {experimentalForceLongPolling: true});
     const dbCollection  = collection(db, "flashcard");
@@ -24,10 +24,13 @@ const CardColecao = (props) => {
                     <Text style={styles.text}>{texto} </Text>
                 </TouchableOpacity>
                 <View style={styles.iconContainer}>
-                    <View style={styles.icon} onPress={() => navigation.navigate('NovaColecao')}>
+                    {/* <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate('NovaColecao')}> */}
+                    <TouchableOpacity style={styles.icon} onPress={()=>{ navigation.navigate('NovaColecao', {colecao:{imagem, texto, descricao, id}}) }}>
                         <Icon name="pencil" size={20} color="#4472C4"></Icon>
-                    </View>
-                    <TouchableOpacity onPress={()=>{
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                     style={styles.icon}
+                     onPress={()=>{
                         Alert.alert(
                             "",
                             "Você tem certeza que deseja excluir essa coleção?",
