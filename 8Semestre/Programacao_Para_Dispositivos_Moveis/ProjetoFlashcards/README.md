@@ -46,6 +46,20 @@ Tendo em vista essa regra de negócio e a implementação do Projeto (Parte 1) d
 
 ## Screenshots
 
+### Minhas Coleções
+
+<img src="README/img/Screenshot_1.png" alt="drawing" width="300"/> <img src="README/img/Screenshot_2.png" alt="drawing" width="300"/>
+
+### Flashcards
+
+<img src="README/img/Screenshot_3.png" alt="drawing" width="300"/> 
+<img src="README/img/Screenshot_4.png" alt="drawing" width="300"/> 
+<img src="README/img/Screenshot_5.png" alt="drawing" width="300"/> 
+
+### Jogar
+
+<img src="README/img/Screenshot_6.png" alt="drawing" width="300"/> 
+
 ## Frameworks
 
 | Nome | Versão
