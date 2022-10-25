@@ -19,15 +19,15 @@ Construir um jogo plataforma utilizando a ferramenta Unity:
 
 ## Screenshots
 
-### Tela Inicio
-![Imagem do Login](/README/img/tela_inicio.png)
+### Tela Inicio e Fim
+<img src="README/img/tela_inicio.png" alt="drawing" width="400"/> <img src="README/img/fim_jogo.png" alt="drawing" width="400"/>
+
 ### Parte 1
-<img src="README/img/parte_1.png" alt="drawing" width="300"/>
-### Plataforma móvel
+![Imagem do Login](README/img/parte_1.png)
 
-### Inimigo
+### Inimigo e Plataforma móvel
+<img src="README/img/inimigo_1.png" alt="drawing" width="400"/> <img src="README/img/plataforma_movel.png" alt="drawing" width="400"/>
 
-### Tela Fim
 
 ## Dependências
 * Unity
