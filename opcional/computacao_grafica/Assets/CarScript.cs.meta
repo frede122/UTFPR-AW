@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: efd5bde1d233c1c40ad2d1b66ee1457b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - farol: {fileID: 8429787824816393396, guid: 37072cde69b48de419f5ca517d13a755, type: 3}
+  - a: {fileID: 2862383357388417858, guid: a78d463c3f4be444b8ced761ba8da396, type: 3}
+  - b: {fileID: 458927900884516572, guid: 3943059eacfcd0446b69e709189ed155, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
