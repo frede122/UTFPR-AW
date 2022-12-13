@@ -19,9 +19,6 @@ Faça um jogo em primeira pessoa, no estilo Pac-Man, que tenha os seguintes requ
 
 ## Screenshots
 
-### Tela Inicio e Fim
-<img src="README/img/tela_inicio.png" alt="drawing" width="400"/> <img src="README/img/fim_jogo.png" alt="drawing" width="400"/>
-
 ### Visão Geral
 ![Parte 1](README/img/Visao_Geral.png)
 
