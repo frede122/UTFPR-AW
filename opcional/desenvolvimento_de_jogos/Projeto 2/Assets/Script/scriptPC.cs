@@ -36,10 +36,6 @@ public class scriptPC : MonoBehaviour
 
         transform.Translate(unidadeX, 0, unidadeY);
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            scriptController.pontos = scriptController.pontos + 1;
-        }
 	}
 
 	
