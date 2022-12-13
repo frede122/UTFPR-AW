@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b3024d1bcb5fb2b44a4b7230d932211e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pc: {instanceID: 0}
+  - clipPegar: {fileID: 8300000, guid: 57d53b131e09e224392e6ffdaad7f596, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
