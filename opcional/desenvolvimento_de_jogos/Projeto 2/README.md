@@ -1,4 +1,4 @@
-# Projeto Game Plataforma
+# Projeto Game Pac-Man
 Projeto de game 3D estilo Pac-Man com inimigos.
 
 ## Especificação do Projeto Parte 2
@@ -31,7 +31,7 @@ Altamente desejável criar um jogo temático (com modelos escolhidos por você).
 ### Visão Geral
 ![Parte 1](README/img/parte_1.png)
 
-### Inimigos e Plataforma móvel
+### Inimigos
 <img src="README/img/inimigo_1.png" alt="drawing" width="400"/> <img src="README/img/inimigo_2.png" alt="drawing" width="400"/>
 
 ### Espelho e Portal
